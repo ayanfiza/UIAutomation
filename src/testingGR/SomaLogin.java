@@ -50,7 +50,7 @@ public class SomaLogin {
 				.click().build().perform();
 
 		driver.findElement(By.id("description")).sendKeys(
-				"This is my description  " + (int) Math.random() * 100);
+				"This is my description  " + (int) Math.random() * 1000000);
 		driver.findElement(By.id("hostProductLineCode")).sendKeys(productLine);
 		driver.findElement(By.id("intentId")).sendKeys(intend);
 		driver.findElement(By.id("startDateInput")).sendKeys("05/19/2015");

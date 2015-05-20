@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class SomaAutomation {
@@ -19,6 +20,7 @@ public class SomaAutomation {
 
 	SomaLogin login = new SomaLogin();
 	private JTextField textOutput;
+	private JTextField textPassword;
 
 	/**
 	 * Launch the application.
@@ -53,7 +55,7 @@ public class SomaAutomation {
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Product Line");
-		lblNewLabel.setBounds(30, 61, 68, 30);
+		lblNewLabel.setBounds(30, 61, 98, 30);
 		frame.getContentPane().add(lblNewLabel);
 
 		JLabel lblIntend = new JLabel("Intend");
@@ -77,6 +79,9 @@ public class SomaAutomation {
 				String browser = textBrowser.getText();
 				String productLine = textProductLine.getText();
 				String intend = textIntend.getText();
+				String pass = textPassword.getText();
+				if (pass.equals("do the magic"))
+				{
 				try {
 					String priceTableCode = login.openBrowser(browser,
 							productLine, intend);
@@ -87,9 +92,13 @@ public class SomaAutomation {
 					textOutput.setText(e1.getMessage());
 
 				}
+				}
+				{
+					textOutput.setText("Wrong Password");
+				}
 			}
 		});
-		btnPriceTable.setBounds(105, 142, 121, 23);
+		btnPriceTable.setBounds(425, 146, 121, 23);
 		frame.getContentPane().add(btnPriceTable);
 
 		textIntend = new JTextField();
@@ -122,5 +131,18 @@ public class SomaAutomation {
 		textOutput.setBounds(105, 176, 345, 137);
 		frame.getContentPane().add(textOutput);
 		textOutput.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(30, 142, 68, 30);
+		frame.getContentPane().add(lblPassword);
+		
+		textPassword = new JPasswordField();                                   //Password
+		textPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		textPassword.setColumns(10);
+		textPassword.setBounds(168, 146, 200, 20);
+		frame.getContentPane().add(textPassword);
 	}
 }
