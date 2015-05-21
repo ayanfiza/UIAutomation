@@ -18,9 +18,13 @@ public class SomaAutomation {
 	private JLabel lblBrowser;
 	private JTextField textBrowser;
 
-	SomaLogin login = new SomaLogin();
+	PriceTableCreation login = new PriceTableCreation();
+	ShippingTableCreation shipping = new ShippingTableCreation();
+	CreateCustomizatinoOffer customization = new CreateCustomizatinoOffer();
+	CreateCatalog catalog = new CreateCatalog();
 	private JTextField textOutput;
 	private JTextField textPassword;
+	private JTextField textCatKit;
 
 	/**
 	 * Launch the application.
@@ -73,27 +77,64 @@ public class SomaAutomation {
 
 		JButton btnPriceTable = new JButton("Create Price Table"); // Creating
 																	// Price
-																	// Table.
+																	// Table and
+																	// shipping
+																	// table and
+																	// Customizaiton
+																	// Offer
 		btnPriceTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String browser = textBrowser.getText();
 				String productLine = textProductLine.getText();
 				String intend = textIntend.getText();
 				String pass = textPassword.getText();
-				if (pass.equals("do the magic"))
-				{
-				try {
-					String priceTableCode = login.openBrowser(browser,
-							productLine, intend);
-					textOutput
-							.setText("Price Table is created \n PriceTableCode:  "
-									+ priceTableCode);
-				} catch (InterruptedException e1) {
-					textOutput.setText(e1.getMessage());
+				String catKit = textCatKit.getText();
+				if (pass.equals("do the magic")) {
+					if (catKit.equals("Cat"))
+					{
+					try {
+						String priceTableCode = login.createPriceTable(browser,
+								productLine, intend);
+						String shippingTableCode = shipping
+								.createShippingTable(browser);
+						String catalogCode = catalog
+								.catalog(browser, productLine,
+										priceTableCode, shippingTableCode);
+						textOutput
+								.setText("Price Table and Shiping Table is created \n PriceTableCode:  "
+										+ priceTableCode
+										+ "\n ShippingTableCode: "
+										+ shippingTableCode
+										+ "\n Catalog Code: "
+										+ catalogCode);
+					} catch (InterruptedException e1) {
+						textOutput.setText(e1.getMessage());
 
-				}
-				}
-				{
+					}
+					}
+					else if (catKit.equals("KC"))
+					{
+						try {
+							String priceTableCode = login.createPriceTable(browser,
+									productLine, intend);
+							String shippingTableCode = shipping
+									.createShippingTable(browser);
+							String customizatinoOfferCode = customization
+									.customizationOffer(browser, productLine,
+											priceTableCode, shippingTableCode);
+							textOutput
+									.setText("Price Table and Shiping Table is created \n PriceTableCode:  "
+											+ priceTableCode
+											+ "\n ShippingTableCode: "
+											+ shippingTableCode
+											+ "\n CustomizaitnoOfferCode: "
+											+ customizatinoOfferCode);
+						} catch (InterruptedException e1) {
+							textOutput.setText(e1.getMessage());
+
+						}
+					}
+				} else if (!pass.equals("do the magic")) {
 					textOutput.setText("Wrong Password");
 				}
 			}
@@ -131,12 +172,12 @@ public class SomaAutomation {
 		textOutput.setBounds(105, 176, 345, 137);
 		frame.getContentPane().add(textOutput);
 		textOutput.setColumns(10);
-		
+
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(30, 142, 68, 30);
 		frame.getContentPane().add(lblPassword);
-		
-		textPassword = new JPasswordField();                                   //Password
+
+		textPassword = new JPasswordField(); // Password
 		textPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -144,5 +185,14 @@ public class SomaAutomation {
 		textPassword.setColumns(10);
 		textPassword.setBounds(168, 146, 200, 20);
 		frame.getContentPane().add(textPassword);
+		
+		textCatKit = new JTextField();
+		textCatKit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {        //CatKit
+			}
+		});
+		textCatKit.setColumns(10);
+		textCatKit.setBounds(448, 28, 98, 20);
+		frame.getContentPane().add(textCatKit);
 	}
 }
