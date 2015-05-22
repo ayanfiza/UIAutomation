@@ -137,11 +137,11 @@ public class SomaAutomation {
 									productLine, catalogCode);
 							String skCode = sk.sourceKey(browser, productLine,
 									ptCode);
-							textOutput.setText("\n PriceTableCode:  "
-									+ priceTableCode + "\n ShippingTableCode: "
-									+ shippingTableCode + "\n Catalog Code: "
-									+ catalogCode + "\n Promotional Template: "
-									+ ptCode + "\n Sourcekey Code: " + skCode);
+							textOutput.setText("PriceTableCode: 	 "
+									+ priceTableCode + "\n ShippingTableCode: 		"
+									+ shippingTableCode + "\n Catalog Code: 		"
+									+ catalogCode + "\n Promotional Template: 		"
+									+ ptCode + "\n Sourcekey Code: 		" + skCode);
 						} catch (InterruptedException e1) {
 							textOutput.setText(e1.getMessage());
 
@@ -159,10 +159,10 @@ public class SomaAutomation {
 							String customizatinoOfferCode = customization
 									.customizationOffer(browser, productLine,
 											priceTableCode, shippingTableCode);
-							textOutput.setText("\n PriceTableCode:  "
-									+ priceTableCode + "\n ShippingTableCode: "
+							textOutput.setText("PriceTableCode:  	"
+									+ priceTableCode + "\n ShippingTableCode: 	"
 									+ shippingTableCode
-									+ "\n CustomizaitnoOfferCode: "
+									+ "\n CustomizaitnoOfferCode:	 "
 									+ customizatinoOfferCode);
 						} catch (InterruptedException e1) {
 							textOutput.setText(e1.getMessage());
@@ -181,11 +181,11 @@ public class SomaAutomation {
 									productLine, catalogCode);
 							String skCode = sk.sourceKey(browser, productLine,
 									ptCode);
-							textOutput.setText("\n PriceTableCode:  "
-									+ priceTableCode + "\n ShippingTableCode: "
-									+ shippingTableCode + "\n Catalog Code: "
-									+ catalogCode + "\n Promotional Template: "
-									+ ptCode + "\n Sourcekey Code: " + skCode);
+							textOutput.setText("PriceTableCode:  	"
+									+ priceTableCode + "\n ShippingTableCode: 	"
+									+ shippingTableCode + "\n Catalog Code: 	"
+									+ catalogCode + "\n Promotional Template: 	"
+									+ ptCode + "\n Sourcekey Code: 	" + skCode);
 						} catch (Exception e1) {
 							textOutput.setText(e1.getMessage());
 
@@ -200,10 +200,10 @@ public class SomaAutomation {
 							String customizatinoOfferCode = customization
 									.customizationOffer(browser, productLine,
 											priceTableCode, shippingTableCode);
-							textOutput.setText("\n PriceTableCode:  "
-									+ priceTableCode + "\n ShippingTableCode: "
+							textOutput.setText("PriceTableCode: 	 "
+									+ priceTableCode + "\n ShippingTableCode:	 "
 									+ shippingTableCode
-									+ "\n CustomizaitnoOfferCode: "
+									+ "\n CustomizaitnoOfferCode:	 "
 									+ customizatinoOfferCode);
 						} catch (Exception e1) {
 							textOutput.setText(e1.getMessage());
