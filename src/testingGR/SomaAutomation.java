@@ -87,6 +87,7 @@ public class SomaAutomation {
 		JRadioButton kitCustBtn = new JRadioButton("Kit Cust");
 		kitCustBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				textIntend.setText("Kit Customization");
 			}
 		});
 		kitCustBtn.setBounds(463, 35, 78, 23);
@@ -95,6 +96,7 @@ public class SomaAutomation {
 		JRadioButton catBtn = new JRadioButton("Catalog");
 		catBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				textIntend.setText("Catalog Offers");
 			}
 		});
 		catBtn.setBounds(543, 35, 68, 23);
