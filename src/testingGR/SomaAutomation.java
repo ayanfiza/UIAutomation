@@ -1,5 +1,6 @@
 package testingGR;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -64,6 +65,7 @@ public class SomaAutomation {
 	private void initialize() {
 		frame = new JFrame("Play with SOMA UI");
 		frame.setBounds(100, 100, 655, 403);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
