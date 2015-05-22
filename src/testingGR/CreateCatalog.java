@@ -61,7 +61,7 @@ public class CreateCatalog {
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
 		driver.findElement(By.id("catalogDescription")).sendKeys(
-				"This is my catalog description  " + new Random().nextInt(101));
+				"This is my catalog description  " + new Random().nextInt(1000));
 		driver.findElement(By.id("hostProductLineCode")).sendKeys(productline);
 
 		// selecting priceTable

@@ -58,7 +58,7 @@ public class CreatingPromotionalTemplate {
 
 		// Description
 		driver.findElement(By.id("SaveScript_bean_description")).sendKeys(
-				"This is my PT description  " + new Random().nextInt(101));
+				"This is my PT description  " + new Random().nextInt(1000));
 		// StratDate
 		driver.findElement(By.id("SaveScript_bean_beginDate")).click();
 		driver.findElement(

@@ -56,7 +56,7 @@ public class ShippingTableCreation {
 								.xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[4]/ul/li[2]/a")))
 				.click().build().perform();
 		driver.findElement(By.id("description")).sendKeys(
-				"This is my Shipping Table description  " + new Random().nextInt(101));
+				"This is my Shipping Table description  " + new Random().nextInt(1000));
 		driver.findElement(By.id("rateTypeID")).sendKeys("Total Amount");
 		//Shipping Rate Range
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[2]/div[1]/div/div/button")).click();

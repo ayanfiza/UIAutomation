@@ -57,7 +57,7 @@ public class PriceTableCreation {
 				.click().build().perform();
 
 		driver.findElement(By.id("description")).sendKeys(
-				"This is my Price Table description  " + new Random().nextInt(101));
+				"This is my Price Table description  " + new Random().nextInt(1000));
 		driver.findElement(By.id("hostProductLineCode")).sendKeys(productLine);
 		driver.findElement(By.id("intentId")).sendKeys(intend);
 		driver.findElement(By.id("startDateInput")).sendKeys("05/19/2015");

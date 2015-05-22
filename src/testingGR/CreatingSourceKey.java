@@ -58,7 +58,7 @@ public class CreatingSourceKey {
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
 		driver.findElement(By.xpath("/html/body/table/tbody/tr[1]/td/div/form/div[1]/div/div/div[1]/table[3]/tbody/tr/td[2]/textarea")).sendKeys(
-				"This is my Source Key description  " + new Random().nextInt(101));
+				"This is my Source Key description  " + new Random().nextInt(1000));
 		driver.findElement(By.id("sourceKeyProductLine")).sendKeys(productline);
 		//Date
 		
