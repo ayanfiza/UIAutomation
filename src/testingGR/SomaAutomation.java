@@ -62,7 +62,7 @@ public class SomaAutomation {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Play with SOMA UI");
 		frame.setBounds(100, 100, 655, 403);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -74,7 +74,7 @@ public class SomaAutomation {
 		JLabel lblIntend = new JLabel("Intend");
 		lblIntend.setBounds(30, 101, 68, 30);
 		frame.getContentPane().add(lblIntend);
-
+		
 		textProductLine = new JTextField(); // Product Line
 		textProductLine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
