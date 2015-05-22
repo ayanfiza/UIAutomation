@@ -84,11 +84,14 @@ public class CreateCustomizatinoOffer {
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[2]/div[1]/div[1]/div/div/input"))
 				.sendKeys(shippingTableCode);
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[2]/div[3]/div/div/div/table/tbody/tr/td[1]"))
+				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[2]/div[2]/div/p/button"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[3]/div/div/p/a"))
+				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[2]/div[3]/div/div/div/table/tbody/tr/td[1]"))
 				.click();
+				driver.findElement(
+						By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[3]/div/div/p/a"))
+						.click();
 
 		// Adding Products
 		driver.findElement(By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[1]/div/div/button[2]")).click();
@@ -106,11 +109,11 @@ public class CreateCustomizatinoOffer {
 				.sendKeys("Base");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[1]/td[4]/input[1]"))
-				.sendKeys("2");
-		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[2]/td[5]/select"))
 				.sendKeys("Mandtory");
+		driver.findElement(
+				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[1]/td[4]/input[1]"))
+				.sendKeys("2");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[2]/td[4]/input[3]"))
@@ -126,6 +129,9 @@ public class CreateCustomizatinoOffer {
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[2]/div/div[1]/div[1]/div/select"))
 				.sendKeys("Fl");
+		driver.findElement(
+				By.id("maxSelect"))
+				.sendKeys("5");
 		driver.findElement(By.id("ruleValue")).sendKeys("5.99");
 		driver.findElement(By.id("BUTTON_validate")).click();
 		String customizationOfferCode = driver.findElement(

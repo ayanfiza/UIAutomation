@@ -1,13 +1,16 @@
 package testingGR;
 
 import java.awt.EventQueue;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class SomaAutomation {
@@ -17,14 +20,20 @@ public class SomaAutomation {
 	private JTextField textIntend;
 	private JLabel lblBrowser;
 	private JTextField textBrowser;
+	private TextArea textOutput;
+	/*
+	 * private JRadioButton catBtn; private JRadioButton kitCustBtn;
+	 */
 
 	PriceTableCreation login = new PriceTableCreation();
 	ShippingTableCreation shipping = new ShippingTableCreation();
 	CreateCustomizatinoOffer customization = new CreateCustomizatinoOffer();
 	CreateCatalog catalog = new CreateCatalog();
-	private JTextField textOutput;
+	CreatingPromotionalTemplate pt = new CreatingPromotionalTemplate();
+	CreatingSourceKey sk = new CreatingSourceKey();
 	private JTextField textPassword;
-	private JTextField textCatKit;
+	private JTextField textPriceTableCode;
+	private JTextField textShippingTableCode;
 
 	/**
 	 * Launch the application.
@@ -54,7 +63,7 @@ public class SomaAutomation {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 599, 381);
+		frame.setBounds(100, 100, 655, 403);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -71,75 +80,142 @@ public class SomaAutomation {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		textProductLine.setBounds(168, 61, 200, 20);
+		textProductLine.setBounds(122, 61, 200, 20);
 		frame.getContentPane().add(textProductLine);
 		textProductLine.setColumns(10);
 
-		JButton btnPriceTable = new JButton("Create Price Table"); // Creating
-																	// Price
-																	// Table and
-																	// shipping
-																	// table and
-																	// Customizaiton
-																	// Offer
+		JRadioButton kitCustBtn = new JRadioButton("Kit Cust");
+		kitCustBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		kitCustBtn.setBounds(463, 35, 78, 23);
+		frame.getContentPane().add(kitCustBtn);
+
+		JRadioButton catBtn = new JRadioButton("Catalog");
+		catBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		catBtn.setBounds(543, 35, 68, 23);
+		frame.getContentPane().add(catBtn);
+
+		ButtonGroup bG = new ButtonGroup();
+		bG.add(kitCustBtn);
+		bG.add(catBtn);
+
+		JButton btnPriceTable = new JButton("Do The Magic"); // Creating
+																// Price
+																// Table and
+																// shipping
+																// table and
+																// Customizaiton
+																// Offer
 		btnPriceTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String browser = textBrowser.getText();
 				String productLine = textProductLine.getText();
 				String intend = textIntend.getText();
 				String pass = textPassword.getText();
-				String catKit = textCatKit.getText();
+				String priceTabelCode1 = textPriceTableCode.getText();
+				String shippingTableCode1 = textShippingTableCode.getText();
 				if (pass.equals("do the magic")) {
-					if (catKit.equals("Cat"))
-					{
-					try {
-						String priceTableCode = login.createPriceTable(browser,
-								productLine, intend);
-						String shippingTableCode = shipping
-								.createShippingTable(browser);
-						String catalogCode = catalog
-								.catalog(browser, productLine,
-										priceTableCode, shippingTableCode);
-						textOutput
-								.setText("Price Table and Shiping Table is created \n PriceTableCode:  "
-										+ priceTableCode
-										+ "\n ShippingTableCode: "
-										+ shippingTableCode
-										+ "\n Catalog Code: "
-										+ catalogCode);
-					} catch (InterruptedException e1) {
-						textOutput.setText(e1.getMessage());
-
-					}
-					}
-					else if (catKit.equals("KC"))
+					if (catBtn.isSelected() && priceTabelCode1.equals("")
+							&& shippingTableCode1.equals("")) // Catalog
 					{
 						try {
-							String priceTableCode = login.createPriceTable(browser,
-									productLine, intend);
+							String priceTableCode = login.createPriceTable(
+									browser, productLine, intend);
+							String shippingTableCode = shipping
+									.createShippingTable(browser);
+							String catalogCode = catalog.catalog(browser,
+									productLine, priceTableCode,
+									shippingTableCode);
+							String ptCode = pt.promotionalTemplate(browser,
+									productLine, catalogCode);
+							String skCode = sk.sourceKey(browser, productLine,
+									ptCode);
+							textOutput.setText("\n PriceTableCode:  "
+									+ priceTableCode + "\n ShippingTableCode: "
+									+ shippingTableCode + "\n Catalog Code: "
+									+ catalogCode + "\n Promotional Template: "
+									+ ptCode + "\n Sourcekey Code: " + skCode);
+						} catch (InterruptedException e1) {
+							textOutput.setText(e1.getMessage());
+
+						}
+					} else if (kitCustBtn.isSelected()
+							&& priceTabelCode1.equals("")
+							&& shippingTableCode1.equals("")) // Customization
+																// Offer
+					{
+						try {
+							String priceTableCode = login.createPriceTable(
+									browser, productLine, intend);
 							String shippingTableCode = shipping
 									.createShippingTable(browser);
 							String customizatinoOfferCode = customization
 									.customizationOffer(browser, productLine,
 											priceTableCode, shippingTableCode);
-							textOutput
-									.setText("Price Table and Shiping Table is created \n PriceTableCode:  "
-											+ priceTableCode
-											+ "\n ShippingTableCode: "
-											+ shippingTableCode
-											+ "\n CustomizaitnoOfferCode: "
-											+ customizatinoOfferCode);
+							textOutput.setText("\n PriceTableCode:  "
+									+ priceTableCode + "\n ShippingTableCode: "
+									+ shippingTableCode
+									+ "\n CustomizaitnoOfferCode: "
+									+ customizatinoOfferCode);
 						} catch (InterruptedException e1) {
 							textOutput.setText(e1.getMessage());
 
 						}
+					} else if (catBtn.isSelected()
+							&& !priceTabelCode1.equals("")
+							&& !shippingTableCode1.equals("")) {
+						try {
+							String priceTableCode = priceTabelCode1;
+							String shippingTableCode = shippingTableCode1;
+							String catalogCode = catalog.catalog(browser,
+									productLine, priceTableCode,
+									shippingTableCode);
+							String ptCode = pt.promotionalTemplate(browser,
+									productLine, catalogCode);
+							String skCode = sk.sourceKey(browser, productLine,
+									ptCode);
+							textOutput.setText("\n PriceTableCode:  "
+									+ priceTableCode + "\n ShippingTableCode: "
+									+ shippingTableCode + "\n Catalog Code: "
+									+ catalogCode + "\n Promotional Template: "
+									+ ptCode + "\n Sourcekey Code: " + skCode);
+						} catch (Exception e1) {
+							textOutput.setText(e1.getMessage());
+
+						}
+
+					} else if (kitCustBtn.isSelected()
+							&& !priceTabelCode1.equals("")
+							&& !shippingTableCode1.equals("")) {
+						try {
+							String priceTableCode = priceTabelCode1;
+							String shippingTableCode = shippingTableCode1;
+							String customizatinoOfferCode = customization
+									.customizationOffer(browser, productLine,
+											priceTableCode, shippingTableCode);
+							textOutput.setText("\n PriceTableCode:  "
+									+ priceTableCode + "\n ShippingTableCode: "
+									+ shippingTableCode
+									+ "\n CustomizaitnoOfferCode: "
+									+ customizatinoOfferCode);
+						} catch (Exception e1) {
+							textOutput.setText(e1.getMessage());
+
+						}
+
 					}
+
 				} else if (!pass.equals("do the magic")) {
 					textOutput.setText("Wrong Password");
 				}
 			}
 		});
-		btnPriceTable.setBounds(425, 146, 121, 23);
+		btnPriceTable.setBounds(10, 191, 155, 23);
 		frame.getContentPane().add(btnPriceTable);
 
 		textIntend = new JTextField();
@@ -148,7 +224,7 @@ public class SomaAutomation {
 					}
 				});
 		textIntend.setColumns(10);
-		textIntend.setBounds(168, 101, 200, 20);
+		textIntend.setBounds(122, 101, 200, 20);
 		frame.getContentPane().add(textIntend);
 
 		lblBrowser = new JLabel("Browser");
@@ -161,17 +237,8 @@ public class SomaAutomation {
 			}
 		});
 		textBrowser.setColumns(10);
-		textBrowser.setBounds(168, 28, 200, 20);
+		textBrowser.setBounds(122, 28, 200, 20);
 		frame.getContentPane().add(textBrowser);
-
-		textOutput = new JTextField();
-		textOutput.addActionListener(new ActionListener() { // Output
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-		textOutput.setBounds(105, 176, 345, 137);
-		frame.getContentPane().add(textOutput);
-		textOutput.setColumns(10);
 
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(30, 142, 68, 30);
@@ -183,16 +250,42 @@ public class SomaAutomation {
 			}
 		});
 		textPassword.setColumns(10);
-		textPassword.setBounds(168, 146, 200, 20);
+		textPassword.setBounds(122, 146, 200, 20);
 		frame.getContentPane().add(textPassword);
-		
-		textCatKit = new JTextField();
-		textCatKit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {        //CatKit
+
+		textOutput = new TextArea();
+		textOutput.setBounds(230, 193, 357, 139);
+		frame.getContentPane().add(textOutput);
+
+		JLabel lblChooseOne = new JLabel("Choose one");
+		lblChooseOne.setBounds(393, 28, 87, 30);
+		frame.getContentPane().add(lblChooseOne);
+
+		JLabel lblPricetable = new JLabel("PriceTable?");
+		lblPricetable.setBounds(393, 61, 68, 30);
+		frame.getContentPane().add(lblPricetable);
+
+		textPriceTableCode = new JTextField(); // priceTable code
+		textPriceTableCode.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		textCatKit.setColumns(10);
-		textCatKit.setBounds(448, 28, 98, 20);
-		frame.getContentPane().add(textCatKit);
+		textPriceTableCode.setColumns(10);
+		textPriceTableCode.setBounds(490, 69, 121, 20);
+		frame.getContentPane().add(textPriceTableCode);
+
+		JLabel lblShippingtable = new JLabel("ShippingTable?");
+		lblShippingtable.setBounds(393, 101, 87, 30);
+		frame.getContentPane().add(lblShippingtable);
+
+		textShippingTableCode = new JTextField();
+		textShippingTableCode.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { // ShippingTable Code
+			}
+		});
+		textShippingTableCode.setColumns(10);
+		textShippingTableCode.setBounds(490, 109, 121, 20);
+		frame.getContentPane().add(textShippingTableCode);
+
 	}
 }

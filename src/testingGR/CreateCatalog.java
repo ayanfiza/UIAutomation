@@ -15,9 +15,10 @@ import org.openqa.selenium.interactions.Actions;
 
 public class CreateCatalog {
 	WebDriver driver;
+
 	public String catalog(String browser, String productline,
-			String priceTableCode, String shippingTableCode){
-		
+			String priceTableCode, String shippingTableCode) {
+
 		String userName = "kgautam_con";
 		String password = "KGgr2015";
 		if (browser.equals("chrome")) {
@@ -26,10 +27,11 @@ public class CreateCatalog {
 			driver = new ChromeDriver();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		} else if (browser.equals("ie")) {
-			File file = new File("C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\IEDriverServer.exe");
-		       System.setProperty("webdriver.ie.driver", file.getAbsolutePath() );  
-		        driver = new InternetExplorerDriver();
-		        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+			File file = new File(
+					"C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+			driver = new InternetExplorerDriver();
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		} else if (browser.equals("firefox")) {
 			driver = new FirefoxDriver();
 		}
@@ -43,8 +45,8 @@ public class CreateCatalog {
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 			Assert.assertEquals("Setup Home", driver.getTitle());
 		}
-		
-		//Navigation
+
+		// Navigation
 		Actions action = new Actions(driver);
 		WebElement we = driver.findElement(By
 				.xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[5]/a"));
@@ -58,19 +60,18 @@ public class CreateCatalog {
 				.click().build().perform();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-		
 		driver.findElement(By.id("catalogDescription")).sendKeys(
 				"This is my catalog description  " + new Random().nextInt(101));
 		driver.findElement(By.id("hostProductLineCode")).sendKeys(productline);
-		
-		//selecting priceTable
-		
+
+		// selecting priceTable
+
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[1]/div[2]/div[2]/div[1]/div/div/button"))
 				.click();
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[3]/form/div[2]/div[2]/div/div/div/input"))
-				.sendKeys(priceTableCode);	
+				.sendKeys(priceTableCode);
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[3]/form/div[2]/div[3]/div/p/button"))
 				.click();
@@ -84,9 +85,10 @@ public class CreateCatalog {
 		// StratDate EndDate
 		driver.findElement(By.id("startDateInput")).sendKeys("05/19/2015");
 		driver.findElement(By.id("endDateInput")).sendKeys("10/19/2015");
-		
-		//ShippingTable
-		driver.findElement(By.xpath("/html/body/div[3]/section/form/div[1]/div[2]/div[2]/div[2]/div/div/button"))
+
+		// ShippingTable
+		driver.findElement(
+				By.xpath("/html/body/div[3]/section/form/div[1]/div[2]/div[2]/div[2]/div/div/button"))
 				.click();
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[4]/form/div[2]/div[1]/div[1]/div/div/input"))
@@ -100,12 +102,15 @@ public class CreateCatalog {
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[4]/form/div[3]/div/div/p/a"))
 				.click();
-		
 
 		// Adding Products
-		driver.findElement(By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[1]/div[2]/div/button")).click();
-		
-		driver.findElement(By.xpath("/html/body/div[3]/section/form/div[3]/div[2]/form/div[2]/div[4]/div/p/button")).click();
+		driver.findElement(
+				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[1]/div[2]/div/button"))
+				.click();
+
+		driver.findElement(
+				By.xpath("/html/body/div[3]/section/form/div[3]/div[2]/form/div[2]/div[4]/div/p/button"))
+				.click();
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[2]/form/div[2]/div[5]/div/div/div/table/tbody/tr[1]/td[1]"))
 				.click();
@@ -119,15 +124,13 @@ public class CreateCatalog {
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[2]/form/div[3]/div/div/p/a"))
 				.click();
 
-		//Validating
+		// Validating
 		driver.findElement(By.id("BUTTON_validate")).click();
-		String catalogCode = driver.findElement(
-				By.id("catalogCode")).getText();
+		String catalogCode = driver.findElement(By.id("catalogCode")).getText();
+		driver.close();
+		driver.quit();
 		return catalogCode;
 
-		
-		
-		
 	}
 
 }
