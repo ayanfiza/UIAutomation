@@ -8,9 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class BasePage {
 
@@ -25,9 +27,13 @@ public class BasePage {
 		String password = "KGgr2015";
 
 		if (browser.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\chromedriver.exe");
-			driver = new ChromeDriver();
+			System.setProperty("webdriver.chrome.driver","C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\chromedriver.exe");
+		    DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		    ChromeOptions options = new ChromeOptions();
+		    options.addArguments("test-type");
+		    capabilities.setCapability("chrome.binary","C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\chromedriver.exe");
+		    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+		    driver = new ChromeDriver(capabilities);
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		} else if (browser.equals("ie")) {
 			File file = new File(
