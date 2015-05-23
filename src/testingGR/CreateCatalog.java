@@ -13,55 +13,26 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 
-public class CreateCatalog {
+public class CreateCatalog extends SomaAutomation {
 	WebDriver driver;
 
-	public String catalog(String browser, String productline,
-			String priceTableCode, String shippingTableCode) {
+	public CreateCatalog(WebDriver driver) {
+		this.driver = driver;
+	}
 
-		String userName = "kgautam_con";
-		String password = "KGgr2015";
-		if (browser.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\chromedriver.exe");
-			driver = new ChromeDriver();
-			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		} else if (browser.equals("ie")) {
-			File file = new File(
-					"C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\IEDriverServer.exe");
-			System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-			driver = new InternetExplorerDriver();
-			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		} else if (browser.equals("firefox")) {
-			driver = new FirefoxDriver();
-		}
-		driver.manage().window().maximize();
-		driver.get("http://10.92.41.174:8380/soma-webui/home/Home.action");
-		String title = driver.getTitle();
-		if (title.equals("SOMA")) {
-			driver.findElement(By.id("username")).sendKeys(userName);
-			driver.findElement(By.id("password")).sendKeys(password);
-			driver.findElement(By.id("Login_0")).click();
-			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-			Assert.assertEquals("Setup Home", driver.getTitle());
-		}
+	public WebDriver catalog(String productline, String priceTableCode,
+			String shippingTableCode) {
 
 		// Navigation
-		Actions action = new Actions(driver);
-		WebElement we = driver.findElement(By
-				.xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[5]/a"));
-		action.moveToElement(we)
-				.moveToElement(
-						driver.findElement(By
-								.xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[5]/ul/li[3]/a")))
-				.moveToElement(
-						driver.findElement(By
-								.xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[5]/ul/li[3]/ul/li[2]/a")))
-				.click().build().perform();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver = new BasePage(driver)
+				.hover("/html/body/div[2]/div[2]/div/div/div/ul/li[5]/a",
+						"/html/body/div[2]/div[2]/div/div/div/ul/li[5]/ul/li[3]/a",
+						"/html/body/div[2]/div[2]/div/div/div/ul/li[5]/ul/li[3]/ul/li[2]/a");
 
-		driver.findElement(By.id("catalogDescription")).sendKeys(
-				"This is my catalog description  " + new Random().nextInt(1000));
+		driver.findElement(By.id("catalogDescription"))
+				.sendKeys(
+						"This is my catalog description  "
+								+ new Random().nextInt(1000));
 		driver.findElement(By.id("hostProductLineCode")).sendKeys(productline);
 
 		// selecting priceTable
@@ -126,10 +97,14 @@ public class CreateCatalog {
 
 		// Validating
 		driver.findElement(By.id("BUTTON_validate")).click();
-		String catalogCode = driver.findElement(By.id("catalogCode")).getText();
-		driver.close();
-		driver.quit();
-		return catalogCode;
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		String catalogCode1 = driver
+				.findElement(
+						By.xpath("/html/body/div[3]/section/form/div[1]/div[1]/div[1]/div[1]/h4/span"))
+				.getText();
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		catalogCode = catalogCode1;
+		return driver;
 
 	}
 

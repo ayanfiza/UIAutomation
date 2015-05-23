@@ -13,51 +13,34 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 
-public class PriceTableCreation {
+public class PriceTableCreation extends SomaAutomation {
 	WebDriver driver;
 
-	public String createPriceTable(String browser, String productLine, String intend)
-			throws InterruptedException {
+	public PriceTableCreation(WebDriver driver) {
+		this.driver = driver;
+	}
 
-		String userName = "kgautam_con";
-		String password = "KGgr2015";
-		if (browser.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\chromedriver.exe");
-			driver = new ChromeDriver();
-			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		} else if (browser.equals("ie")) {
-		       System.setProperty("webdriver.ie.driver", "C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\IEDriverServer.exe");
-		        driver = new InternetExplorerDriver();
-		        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		} else if (browser.equals("firefox")) {
-			driver = new FirefoxDriver();
-		}
-		driver.manage().window().maximize();
-		driver.get("http://10.92.41.174:8380/soma-webui/home/Home.action");
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		String title = driver.getTitle();
-		if (title.equals("SOMA")) {
-			driver.findElement(By.id("username")).sendKeys(userName);
-			driver.findElement(By.id("password")).sendKeys(password);
-			driver.findElement(By.id("Login_0")).click();
-			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-			Assert.assertEquals("Setup Home", driver.getTitle());
-		}
-		Actions action = new Actions(driver);
-		WebElement we = driver.findElement(By
-				.xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/a"));
-		action.moveToElement(we)
-				.moveToElement(
-						driver.findElement(By
-								.xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/a")))
-				.moveToElement(
-						driver.findElement(By
-								.xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/ul/li[2]/a")))
-				.click().build().perform();
+	public WebDriver createPriceTable(String productLine, String intend)
+			throws InterruptedException {
+		this.driver = new BasePage(driver)
+				.hover("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/a",
+						"/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/a",
+						"/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/ul/li[2]/a");
+
+		/*
+		 * Actions action = new Actions(driver); WebElement we =
+		 * driver.findElement(By
+		 * .xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/a"));
+		 * action.moveToElement(we) .moveToElement( driver.findElement(By
+		 * .xpath("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/a")))
+		 * .moveToElement( driver.findElement(By .xpath(
+		 * "/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/ul/li[2]/a"
+		 * ))) .click().build().perform();
+		 */
 
 		driver.findElement(By.id("description")).sendKeys(
-				"This is my Price Table description  " + new Random().nextInt(1000));
+				"This is my Price Table description  "
+						+ new Random().nextInt(1000));
 		driver.findElement(By.id("hostProductLineCode")).sendKeys(productLine);
 		driver.findElement(By.id("intentId")).sendKeys(intend);
 		driver.findElement(By.id("startDateInput")).sendKeys("05/19/2015");
@@ -137,11 +120,10 @@ public class PriceTableCreation {
 				.click();
 		driver.findElement(By.id("BUTTON_validate")).click();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		String priceTableCode = driver.findElement(By.id("priceCode"))
-				.getText();
-		driver.close();
-		driver.quit();
-		return priceTableCode;
+		String priceCode1 = driver.findElement(By.id("priceCode")).getText();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		priceTableCode = priceCode1;
+		// driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/a/div/img")).click();
+		return driver;
 	}
-
 }

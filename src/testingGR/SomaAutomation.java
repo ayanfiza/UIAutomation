@@ -1,6 +1,5 @@
 package testingGR;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -13,6 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SomaAutomation {
 
@@ -22,16 +25,14 @@ public class SomaAutomation {
 	private JLabel lblBrowser;
 	private JTextField textBrowser;
 	private TextArea textOutput;
+	static String priceTableCode;
+	static String shippingTableCode;
+	static String catalogCode;
+	static String ptCode;
 	/*
 	 * private JRadioButton catBtn; private JRadioButton kitCustBtn;
 	 */
-
-	PriceTableCreation login = new PriceTableCreation();
-	ShippingTableCreation shipping = new ShippingTableCreation();
-	CreateCustomizatinoOffer customization = new CreateCustomizatinoOffer();
-	CreateCatalog catalog = new CreateCatalog();
-	CreatingPromotionalTemplate pt = new CreatingPromotionalTemplate();
-	CreatingSourceKey sk = new CreatingSourceKey();
+	;
 	private JTextField textPassword;
 	private JTextField textPriceTableCode;
 	private JTextField textShippingTableCode;
@@ -76,8 +77,9 @@ public class SomaAutomation {
 		JLabel lblIntend = new JLabel("Intend");
 		lblIntend.setBounds(30, 101, 68, 30);
 		frame.getContentPane().add(lblIntend);
-		
+
 		textProductLine = new JTextField(); // Product Line
+		textProductLine.setText("IT");
 		textProductLine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -117,33 +119,39 @@ public class SomaAutomation {
 																// Offer
 		btnPriceTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				WebDriver driver = null;
 				String browser = textBrowser.getText();
 				String productLine = textProductLine.getText();
 				String intend = textIntend.getText();
 				String pass = textPassword.getText();
 				String priceTabelCode1 = textPriceTableCode.getText();
 				String shippingTableCode1 = textShippingTableCode.getText();
+
 				if (pass.equals("do the magic")) {
 					if (catBtn.isSelected() && priceTabelCode1.equals("")
 							&& shippingTableCode1.equals("")) // Catalog
 					{
 						try {
-							String priceTableCode = login.createPriceTable(
-									browser, productLine, intend);
-							String shippingTableCode = shipping
-									.createShippingTable(browser);
-							String catalogCode = catalog.catalog(browser,
+							driver = new BasePage(driver).login(browser);
+							driver = new PriceTableCreation(driver)
+									.createPriceTable(productLine, intend);
+							driver = new ShippingTableCreation(driver)
+									.createShippingTable();
+							driver = new CreateCatalog(driver).catalog(
 									productLine, priceTableCode,
 									shippingTableCode);
-							String ptCode = pt.promotionalTemplate(browser,
-									productLine, catalogCode);
-							String skCode = sk.sourceKey(browser, productLine,
-									ptCode);
-							textOutput.setText("PriceTableCode: 	 "
-									+ priceTableCode + "\n ShippingTableCode: 		"
-									+ shippingTableCode + "\n Catalog Code: 		"
-									+ catalogCode + "\n Promotional Template: 		"
-									+ ptCode + "\n Sourcekey Code: 		" + skCode);
+							driver = new CreatingPromotionalTemplate(driver)
+									.promotionalTemplate(productLine,
+											catalogCode);
+							String skCode = new CreatingSourceKey(driver)
+									.sourceKey(productLine, ptCode);
+							textOutput.setText("PriceTableCode:  "
+									+ priceTableCode
+									+ "\n ShippingTableCode:  "
+									+ shippingTableCode + "\n Catalog Code:  "
+									+ catalogCode
+									+ "\n Promotional Template:  " + ptCode
+									+ "\n Sourcekey Code:  " + skCode);
 						} catch (InterruptedException e1) {
 							textOutput.setText(e1.getMessage());
 
@@ -154,18 +162,20 @@ public class SomaAutomation {
 																// Offer
 					{
 						try {
-							String priceTableCode = login.createPriceTable(
-									browser, productLine, intend);
-							String shippingTableCode = shipping
-									.createShippingTable(browser);
-							String customizatinoOfferCode = customization
-									.customizationOffer(browser, productLine,
-											priceTableCode, shippingTableCode);
-							textOutput.setText("PriceTableCode:  	"
-									+ priceTableCode + "\n ShippingTableCode: 	"
+							driver = new BasePage(driver).login(browser);
+							driver = new PriceTableCreation(driver)
+									.createPriceTable(productLine, intend);
+							driver = new ShippingTableCreation(driver)
+									.createShippingTable();
+							String customizationOfferCode = new CreateCustomizatinoOffer(
+									driver).customizationOffer(productLine,
+									priceTableCode, shippingTableCode);
+							textOutput.setText("PriceTableCode:  "
+									+ priceTableCode
+									+ "\n ShippingTableCode:  "
 									+ shippingTableCode
-									+ "\n CustomizaitnoOfferCode:	 "
-									+ customizatinoOfferCode);
+									+ "\n CustomizaitnoOfferCode:  "
+									+ customizationOfferCode);
 						} catch (InterruptedException e1) {
 							textOutput.setText(e1.getMessage());
 
@@ -176,18 +186,21 @@ public class SomaAutomation {
 						try {
 							String priceTableCode = priceTabelCode1;
 							String shippingTableCode = shippingTableCode1;
-							String catalogCode = catalog.catalog(browser,
+							driver = new CreateCatalog(driver).catalog(
 									productLine, priceTableCode,
 									shippingTableCode);
-							String ptCode = pt.promotionalTemplate(browser,
-									productLine, catalogCode);
-							String skCode = sk.sourceKey(browser, productLine,
-									ptCode);
-							textOutput.setText("PriceTableCode:  	"
-									+ priceTableCode + "\n ShippingTableCode: 	"
-									+ shippingTableCode + "\n Catalog Code: 	"
-									+ catalogCode + "\n Promotional Template: 	"
-									+ ptCode + "\n Sourcekey Code: 	" + skCode);
+							driver = new CreatingPromotionalTemplate(driver)
+									.promotionalTemplate(productLine,
+											catalogCode);
+							String skCode = new CreatingSourceKey(driver)
+									.sourceKey(productLine, ptCode);
+							textOutput.setText("PriceTableCode:  "
+									+ priceTableCode
+									+ "\n ShippingTableCode:  "
+									+ shippingTableCode + "\n Catalog Code:  "
+									+ catalogCode
+									+ "\n Promotional Template:  " + ptCode
+									+ "\n Sourcekey Code:  " + skCode);
 						} catch (Exception e1) {
 							textOutput.setText(e1.getMessage());
 
@@ -199,14 +212,15 @@ public class SomaAutomation {
 						try {
 							String priceTableCode = priceTabelCode1;
 							String shippingTableCode = shippingTableCode1;
-							String customizatinoOfferCode = customization
-									.customizationOffer(browser, productLine,
-											priceTableCode, shippingTableCode);
-							textOutput.setText("PriceTableCode: 	 "
-									+ priceTableCode + "\n ShippingTableCode:	 "
+							String customizationOfferCode = new CreateCustomizatinoOffer(
+									driver).customizationOffer(productLine,
+									priceTableCode, shippingTableCode);
+							textOutput.setText("PriceTableCode:  "
+									+ priceTableCode
+									+ "\n ShippingTableCode:  "
 									+ shippingTableCode
-									+ "\n CustomizaitnoOfferCode:	 "
-									+ customizatinoOfferCode);
+									+ "\n CustomizaitnoOfferCode:  "
+									+ customizationOfferCode);
 						} catch (Exception e1) {
 							textOutput.setText(e1.getMessage());
 
@@ -236,6 +250,7 @@ public class SomaAutomation {
 		frame.getContentPane().add(lblBrowser);
 
 		textBrowser = new JTextField(); // Browser
+		textBrowser.setText("firefox");
 		textBrowser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
