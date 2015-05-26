@@ -1,11 +1,12 @@
 package testingGR;
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -16,8 +17,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import org.openqa.selenium.WebDriver;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class SomaAutomation {
 
@@ -43,6 +42,7 @@ public class SomaAutomation {
 	private JTextField textShippingTableCode;
 	private JTextField textSomaUser;
 	private JPasswordField somaPasswordField;
+	ResetSnapshotDB runSQL = new ResetSnapshotDB();
 
 	/**
 	 * Launch the application.
@@ -284,7 +284,7 @@ public class SomaAutomation {
 		frame.getContentPane().add(lblBrowser);
 
 		textBrowser = new JTextField(); // Browser
-		textBrowser.setText("firefox");
+		textBrowser.setText("Firefox");
 		textBrowser.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -376,6 +376,16 @@ public class SomaAutomation {
 		JLabel lblSomaPassword = new JLabel("Soma Password :");
 		lblSomaPassword.setBounds(30, 229, 217, 30);
 		frame.getContentPane().add(lblSomaPassword);
+		
+		JButton btnRefreshSnapshotDb = new JButton("Refresh Snapshot DB !!!");
+		btnRefreshSnapshotDb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {            // Snapshot DB refresh
+				runSQL.JDBCConnection();
+				textOutput.setText("Snapshot DB refreshed");
+			}
+		});
+		btnRefreshSnapshotDb.setBounds(30, 286, 239, 23);
+		frame.getContentPane().add(btnRefreshSnapshotDb);
 
 	}
 }

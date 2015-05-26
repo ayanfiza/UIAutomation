@@ -36,7 +36,7 @@ public class BasePage {
 		password = pass;
 		}
 
-		if (browser.equals("chrome")) {
+		if (browser.equals("Chrome")) {
 			System.setProperty("webdriver.chrome.driver","C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\chromedriver.exe");
 		    DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		    ChromeOptions options = new ChromeOptions();
@@ -45,13 +45,13 @@ public class BasePage {
 		    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 		    driver = new ChromeDriver(capabilities);
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		} else if (browser.equals("ie")) {
+		} else if (browser.equals("IE")) {
 			File file = new File(
 					"C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\IEDriverServer.exe");
 			System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
 			driver = new InternetExplorerDriver();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		} else if (browser.equals("firefox")) {
+		} else if (browser.equals("Firefox")) {
 			driver = new FirefoxDriver();
 		}
 		driver.manage().window().maximize();
