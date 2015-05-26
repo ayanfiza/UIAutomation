@@ -28,18 +28,6 @@ public class CreateCustomizatinoOffer {
 						"/html/body/div[2]/div[2]/div/div/div/ul/li[4]/ul/li[3]/a",
 						"/html/body/div[2]/div[2]/div/div/div/ul/li[4]/ul/li[3]/ul/li[2]/a");
 
-		/*
-		 * Actions action = new Actions(driver); WebElement we =
-		 * driver.findElement(By
-		 * .xpath("/html/body/div[2]/div[2]/div/div/div/ul/li[4]/a"));
-		 * action.moveToElement(we) .moveToElement( driver.findElement(By
-		 * .xpath("/html/body/div[2]/div[2]/div/div/div/ul/li[4]/ul/li[3]/a")))
-		 * .moveToElement( driver.findElement(By .xpath(
-		 * "/html/body/div[2]/div[2]/div/div/div/ul/li[4]/ul/li[3]/ul/li[2]/a"
-		 * ))) .click().build().perform();
-		 * driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		 */
-
 		driver.findElement(By.id("offerDescription")).sendKeys(
 				"This is my Kit Customization description  "
 						+ new Random().nextInt(1000));
