@@ -51,7 +51,7 @@ public class ShippingTableCreation extends SomaAutomation {
 		driver.findElement(By.id("BUTTON_save")).click();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.id("BUTTON_validate")).click();
-		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String shippingTableCode1 = driver.findElement(
 				By.id("shippingTableCode")).getText();
 		shippingTableCode = shippingTableCode1;

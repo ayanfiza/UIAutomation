@@ -158,7 +158,8 @@ public class SomaAutomation {
 							textOutput.setText(e1.getMessage());
 
 						}
-					} else if (kitCustBtn.isSelected()
+					} 
+					else if (kitCustBtn.isSelected()
 							&& priceTabelCode1.equals("")
 							&& shippingTableCode1.equals("")) // Customization
 																// Offer
@@ -182,13 +183,15 @@ public class SomaAutomation {
 							textOutput.setText(e1.getMessage());
 
 						}
-					} else if (catBtn.isSelected()
+					}
+					else if (catBtn.isSelected()
 							&& !priceTabelCode1.equals("")
 							&& !shippingTableCode1.equals("")) {
 						try {
+							driver = new BasePage(driver).login(browser);
 							String priceTableCode = priceTabelCode1;
 							String shippingTableCode = shippingTableCode1;
-							driver = new CreateCatalog(driver).catalog(
+							driver = new CreateCatalogFresh(driver).catalog(
 									productLine, priceTableCode,
 									shippingTableCode);
 							driver = new CreatingPromotionalTemplate(driver)
@@ -208,13 +211,15 @@ public class SomaAutomation {
 
 						}
 
-					} else if (kitCustBtn.isSelected()
+					} 
+					else if (kitCustBtn.isSelected()
 							&& !priceTabelCode1.equals("")
 							&& !shippingTableCode1.equals("")) {
 						try {
+							driver = new BasePage(driver).login(browser);
 							String priceTableCode = priceTabelCode1;
 							String shippingTableCode = shippingTableCode1;
-							String customizationOfferCode = new CreateCustomizatinoOffer(
+							String customizationOfferCode = new CreateCustomizatinoOfferFresh(
 									driver).customizationOffer(productLine,
 									priceTableCode, shippingTableCode);
 							textOutput.setText("PriceTableCode:  "

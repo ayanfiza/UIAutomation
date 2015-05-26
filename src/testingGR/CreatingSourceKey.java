@@ -37,9 +37,12 @@ public class CreatingSourceKey {
 		driver.findElement(
 				By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[4]/a"))
 				.click();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		// venue
 		driver.findElement(By.id("sourceKeyVenueCode")).sendKeys("53");
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		driver.findElement(By.id("sourceKeyOfferType")).sendKeys("CAT");
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 
 		driver.findElement(
 				By.xpath("/html/body/table/tbody/tr[1]/td/div/form/div[2]/div[1]/div[1]/table/tbody/tr[2]/td/span/img"))
@@ -63,6 +66,9 @@ public class CreatingSourceKey {
 				.findElement(
 						By.xpath("/html/body/table/tbody/tr[1]/td/div/form/div[1]/div/div/div[1]/table[1]/tbody/tr/td[2]"))
 				.getText();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("/html/body/table/tbody/tr[1]/td/div/form/div[3]/ul/li[6]/a")).click();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return sourceKeyCode;
 
 	}

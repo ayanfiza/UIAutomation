@@ -16,8 +16,7 @@ public class PriceTableCreation extends SomaAutomation {
 	public WebDriver createPriceTable(String productLine, String intend)
 			throws InterruptedException {
 		this.driver = new BasePage(driver)
-				.hover("html body div.bsPort div.navbar div.navbar-inner div.container div.nav-collapse ul.nav.grNav li#mediaTab.dropdown a.dropdown-toggle"
-						+ "",
+				.hover("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/a",
 						"/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/a",
 						"/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/ul/li[2]/a");
 
@@ -104,7 +103,7 @@ public class PriceTableCreation extends SomaAutomation {
 		driver.findElement(By.id("BUTTON_validate")).click();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		String priceCode1 = driver.findElement(By.id("priceCode")).getText();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		priceTableCode = priceCode1;
 		// driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/a/div/img")).click();
 		return driver;

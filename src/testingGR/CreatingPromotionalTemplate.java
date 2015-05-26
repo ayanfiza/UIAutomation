@@ -72,6 +72,7 @@ public class CreatingPromotionalTemplate extends SomaAutomation {
 				.click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		ptCode = driver.findElement(By.id("SaveScript_code")).getText();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return driver;
 	}
 }

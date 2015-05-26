@@ -7,10 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CreateCustomizatinoOffer {
+public class CreateCustomizatinoOfferFresh {
 	WebDriver driver;
 
-	public CreateCustomizatinoOffer(WebDriver driver) {
+	public CreateCustomizatinoOfferFresh (WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -18,9 +18,9 @@ public class CreateCustomizatinoOffer {
 			String shippingTableCode) {
 
 		driver = new BasePage(driver)
-				.hover("/html/body/div[2]/div[2]/div/div/div/ul/li[4]/a",
-						"/html/body/div[2]/div[2]/div/div/div/ul/li[4]/ul/li[3]/a",
-						"/html/body/div[2]/div[2]/div/div/div/ul/li[4]/ul/li[3]/ul/li[2]/a");
+				.hover("/html/body/div[1]/div[2]/div/div/div/ul/li[4]/a",
+						"/html/body/div[1]/div[2]/div/div/div/ul/li[4]/ul/li[3]/a",
+						"/html/body/div[1]/div[2]/div/div/div/ul/li[4]/ul/li[3]/ul/li[2]/a");
 
 		driver.findElement(By.id("offerDescription")).sendKeys(
 				"This is my Kit Customization description  "

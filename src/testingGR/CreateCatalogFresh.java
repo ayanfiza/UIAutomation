@@ -6,10 +6,10 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CreateCatalog extends SomaAutomation {
+public class CreateCatalogFresh extends SomaAutomation {
 	WebDriver driver;
 
-	public CreateCatalog(WebDriver driver) {
+	public CreateCatalogFresh (WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -18,9 +18,9 @@ public class CreateCatalog extends SomaAutomation {
 
 		// Navigation
 		driver = new BasePage(driver)
-				.hover("/html/body/div[2]/div[2]/div/div/div/ul/li[5]/a",
-						"/html/body/div[2]/div[2]/div/div/div/ul/li[5]/ul/li[3]/a",
-						"/html/body/div[2]/div[2]/div/div/div/ul/li[5]/ul/li[3]/ul/li[2]/a");
+				.hover("/html/body/div[1]/div[2]/div/div/div/ul/li[5]/a",
+						"/html/body/div[1]/div[2]/div/div/div/ul/li[5]/ul/li[3]/a",
+						"/html/body/div[1]/div[2]/div/div/div/ul/li[5]/ul/li[3]/ul/li[2]/a");
 
 		driver.findElement(By.id("catalogDescription"))
 				.sendKeys(
