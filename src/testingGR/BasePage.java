@@ -22,9 +22,19 @@ public class BasePage {
 		this.driver = driver;
 	}
 
-	public WebDriver login(String browser) {
-		String userName = "kgautam_con";
-		String password = "KGgr2015";
+	public WebDriver login(String browser, String user, String pass) {
+		String userName = null;
+		String password = null;
+		if (user.equals("1") && pass.equals("1"))
+		{
+		userName = "kgautam_con";
+		password = "KGgr2015";
+		}
+		else if (!user.equals("1") && !pass.equals("1"))
+		{
+		userName = user;
+		password = pass;
+		}
 
 		if (browser.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver","C:\\Users\\Kiran\\Documents\\GR\\eclipse\\browserDriver\\chromedriver.exe");
@@ -46,15 +56,11 @@ public class BasePage {
 		}
 		driver.manage().window().maximize();
 		driver.get("http://10.92.41.174:8380/soma-webui/home/Home.action");
-		String title = driver.getTitle();
-		if (title.equals("SOMA")) {
 			driver.findElement(By.id("username")).sendKeys(userName);
 			driver.findElement(By.id("password")).sendKeys(password);
 			driver.findElement(By.id("Login_0")).click();
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 			Assert.assertEquals("Setup Home", driver.getTitle());
-		}
-
 		return driver;
 	}
 

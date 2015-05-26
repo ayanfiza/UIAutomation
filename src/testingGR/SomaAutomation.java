@@ -1,6 +1,8 @@
 package testingGR;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
 import org.openqa.selenium.WebDriver;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class SomaAutomation {
 
@@ -33,6 +38,8 @@ public class SomaAutomation {
 	private JTextField textPassword;
 	private JTextField textPriceTableCode;
 	private JTextField textShippingTableCode;
+	private JTextField textSomaUser;
+	private JPasswordField somaPasswordField;
 
 	/**
 	 * Launch the application.
@@ -107,6 +114,10 @@ public class SomaAutomation {
 		catBtn.setBounds(543, 35, 68, 23);
 		frame.getContentPane().add(catBtn);
 
+		
+
+		
+		
 		ButtonGroup bG = new ButtonGroup();
 		bG.add(kitCustBtn);
 		bG.add(catBtn);
@@ -119,6 +130,7 @@ public class SomaAutomation {
 																// Customizaiton
 																// Offer
 		btnPriceTable.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				WebDriver driver = null;
@@ -128,119 +140,126 @@ public class SomaAutomation {
 				String pass = textPassword.getText();
 				String priceTabelCode1 = textPriceTableCode.getText();
 				String shippingTableCode1 = textShippingTableCode.getText();
+				String somaUser = textSomaUser.getText();
+				String somaPass = somaPasswordField.getText();
+				if (somaUser.equals("") && somaPass.equals("")) {
+					textOutput
+							.setText("Please insert a valid\nUsername and Passoword for SOMA");
+				} else {
+					if (pass.equals("do the magic")) {
+						if (catBtn.isSelected() && priceTabelCode1.equals("")
+								&& shippingTableCode1.equals("")) // Catalog
+						{
+							try {
+								driver = new BasePage(driver).login(browser,
+										somaUser, somaPass);
+								driver = new PriceTableCreation(driver)
+										.createPriceTable(productLine, intend);
+								driver = new ShippingTableCreation(driver)
+										.createShippingTable();
+								driver = new CreateCatalog(driver).catalog(
+										productLine, priceTableCode,
+										shippingTableCode);
+								driver = new CreatingPromotionalTemplate(driver)
+										.promotionalTemplate(productLine,
+												catalogCode);
+								String skCode = new CreatingSourceKey(driver)
+										.sourceKey(productLine, ptCode);
+								textOutput.setText("PriceTableCode:  "
+										+ priceTableCode
+										+ "\n ShippingTableCode:  "
+										+ shippingTableCode
+										+ "\n Catalog Code:  " + catalogCode
+										+ "\n Promotional Template:  " + ptCode
+										+ "\n Sourcekey Code:  " + skCode);
+							} catch (InterruptedException e1) {
+								textOutput.setText(e1.getMessage());
 
-				if (pass.equals("do the magic")) {
-					if (catBtn.isSelected() && priceTabelCode1.equals("")
-							&& shippingTableCode1.equals("")) // Catalog
-					{
-						try {
-							driver = new BasePage(driver).login(browser);
-							driver = new PriceTableCreation(driver)
-									.createPriceTable(productLine, intend);
-							driver = new ShippingTableCreation(driver)
-									.createShippingTable();
-							driver = new CreateCatalog(driver).catalog(
-									productLine, priceTableCode,
-									shippingTableCode);
-							driver = new CreatingPromotionalTemplate(driver)
-									.promotionalTemplate(productLine,
-											catalogCode);
-							String skCode = new CreatingSourceKey(driver)
-									.sourceKey(productLine, ptCode);
-							textOutput.setText("PriceTableCode:  "
-									+ priceTableCode
-									+ "\n ShippingTableCode:  "
-									+ shippingTableCode + "\n Catalog Code:  "
-									+ catalogCode
-									+ "\n Promotional Template:  " + ptCode
-									+ "\n Sourcekey Code:  " + skCode);
-						} catch (InterruptedException e1) {
-							textOutput.setText(e1.getMessage());
+							}
+						} else if (kitCustBtn.isSelected()
+								&& priceTabelCode1.equals("")
+								&& shippingTableCode1.equals("")) // Customization
+																	// Offer
+						{
+							try {
+								driver = new BasePage(driver).login(browser,
+										somaUser, somaPass);
+								driver = new PriceTableCreation(driver)
+										.createPriceTable(productLine, intend);
+								driver = new ShippingTableCreation(driver)
+										.createShippingTable();
+								String customizationOfferCode = new CreateCustomizatinoOffer(
+										driver).customizationOffer(productLine,
+										priceTableCode, shippingTableCode);
+								textOutput.setText("PriceTableCode:  "
+										+ priceTableCode
+										+ "\n ShippingTableCode:  "
+										+ shippingTableCode
+										+ "\n CustomizaitnoOfferCode:  "
+										+ customizationOfferCode);
+							} catch (InterruptedException e1) {
+								textOutput.setText(e1.getMessage());
+
+							}
+						} else if (catBtn.isSelected()
+								&& !priceTabelCode1.equals("")
+								&& !shippingTableCode1.equals("")) {
+							try {
+								driver = new BasePage(driver).login(browser,
+										somaUser, somaPass);
+								String priceTableCode = priceTabelCode1;
+								String shippingTableCode = shippingTableCode1;
+								driver = new CreateCatalogFresh(driver)
+										.catalog(productLine, priceTableCode,
+												shippingTableCode);
+								driver = new CreatingPromotionalTemplate(driver)
+										.promotionalTemplate(productLine,
+												catalogCode);
+								String skCode = new CreatingSourceKey(driver)
+										.sourceKey(productLine, ptCode);
+								textOutput.setText("PriceTableCode:  "
+										+ priceTableCode
+										+ "\n ShippingTableCode:  "
+										+ shippingTableCode
+										+ "\n Catalog Code:  " + catalogCode
+										+ "\n Promotional Template:  " + ptCode
+										+ "\n Sourcekey Code:  " + skCode);
+							} catch (Exception e1) {
+								textOutput.setText(e1.getMessage());
+
+							}
+
+						} else if (kitCustBtn.isSelected()
+								&& !priceTabelCode1.equals("")
+								&& !shippingTableCode1.equals("")) {
+							try {
+								driver = new BasePage(driver).login(browser,
+										somaUser, somaPass);
+								String priceTableCode = priceTabelCode1;
+								String shippingTableCode = shippingTableCode1;
+								String customizationOfferCode = new CreateCustomizatinoOfferFresh(
+										driver).customizationOffer(productLine,
+										priceTableCode, shippingTableCode);
+								textOutput.setText("PriceTableCode:  "
+										+ priceTableCode
+										+ "\n ShippingTableCode:  "
+										+ shippingTableCode
+										+ "\n CustomizaitnoOfferCode:  "
+										+ customizationOfferCode);
+							} catch (Exception e1) {
+								textOutput.setText(e1.getMessage());
+
+							}
 
 						}
-					} 
-					else if (kitCustBtn.isSelected()
-							&& priceTabelCode1.equals("")
-							&& shippingTableCode1.equals("")) // Customization
-																// Offer
-					{
-						try {
-							driver = new BasePage(driver).login(browser);
-							driver = new PriceTableCreation(driver)
-									.createPriceTable(productLine, intend);
-							driver = new ShippingTableCreation(driver)
-									.createShippingTable();
-							String customizationOfferCode = new CreateCustomizatinoOffer(
-									driver).customizationOffer(productLine,
-									priceTableCode, shippingTableCode);
-							textOutput.setText("PriceTableCode:  "
-									+ priceTableCode
-									+ "\n ShippingTableCode:  "
-									+ shippingTableCode
-									+ "\n CustomizaitnoOfferCode:  "
-									+ customizationOfferCode);
-						} catch (InterruptedException e1) {
-							textOutput.setText(e1.getMessage());
 
-						}
+					} else if (!pass.equals("do the magic")) {
+						textOutput.setText("Password is empty or incorrect!!!");
 					}
-					else if (catBtn.isSelected()
-							&& !priceTabelCode1.equals("")
-							&& !shippingTableCode1.equals("")) {
-						try {
-							driver = new BasePage(driver).login(browser);
-							String priceTableCode = priceTabelCode1;
-							String shippingTableCode = shippingTableCode1;
-							driver = new CreateCatalogFresh(driver).catalog(
-									productLine, priceTableCode,
-									shippingTableCode);
-							driver = new CreatingPromotionalTemplate(driver)
-									.promotionalTemplate(productLine,
-											catalogCode);
-							String skCode = new CreatingSourceKey(driver)
-									.sourceKey(productLine, ptCode);
-							textOutput.setText("PriceTableCode:  "
-									+ priceTableCode
-									+ "\n ShippingTableCode:  "
-									+ shippingTableCode + "\n Catalog Code:  "
-									+ catalogCode
-									+ "\n Promotional Template:  " + ptCode
-									+ "\n Sourcekey Code:  " + skCode);
-						} catch (Exception e1) {
-							textOutput.setText(e1.getMessage());
-
-						}
-
-					} 
-					else if (kitCustBtn.isSelected()
-							&& !priceTabelCode1.equals("")
-							&& !shippingTableCode1.equals("")) {
-						try {
-							driver = new BasePage(driver).login(browser);
-							String priceTableCode = priceTabelCode1;
-							String shippingTableCode = shippingTableCode1;
-							String customizationOfferCode = new CreateCustomizatinoOfferFresh(
-									driver).customizationOffer(productLine,
-									priceTableCode, shippingTableCode);
-							textOutput.setText("PriceTableCode:  "
-									+ priceTableCode
-									+ "\n ShippingTableCode:  "
-									+ shippingTableCode
-									+ "\n CustomizaitnoOfferCode:  "
-									+ customizationOfferCode);
-						} catch (Exception e1) {
-							textOutput.setText(e1.getMessage());
-
-						}
-
-					}
-
-				} else if (!pass.equals("do the magic")) {
-					textOutput.setText("Wrong Password");
 				}
 			}
 		});
-		btnPriceTable.setBounds(10, 191, 155, 23);
+		btnPriceTable.setBounds(403, 146, 155, 23);
 		frame.getContentPane().add(btnPriceTable);
 
 		textIntend = new JTextField();
@@ -268,7 +287,7 @@ public class SomaAutomation {
 		textBrowser.setBounds(122, 28, 200, 20);
 		frame.getContentPane().add(textBrowser);
 
-		JLabel lblPassword = new JLabel("Password");
+		JLabel lblPassword = new JLabel("Password :");
 		lblPassword.setBounds(30, 142, 68, 30);
 		frame.getContentPane().add(lblPassword);
 
@@ -282,8 +301,19 @@ public class SomaAutomation {
 		textPassword.setBounds(122, 146, 200, 20);
 		frame.getContentPane().add(textPassword);
 
+		
+		Font f = new Font("Arial", Font.BOLD, 15);
+
+		
 		textOutput = new TextArea();
-		textOutput.setBounds(230, 193, 357, 139);
+		textOutput.setFont(f);
+		textOutput.setForeground(Color.RED);
+		textOutput.addComponentListener(new ComponentAdapter() {      //output
+			@Override
+			public void componentHidden(ComponentEvent arg0) {
+			}
+		});
+		textOutput.setBounds(291, 193, 320, 139);
 		frame.getContentPane().add(textOutput);
 
 		JLabel lblChooseOne = new JLabel("Choose one");
@@ -317,6 +347,32 @@ public class SomaAutomation {
 		textShippingTableCode.setColumns(10);
 		textShippingTableCode.setBounds(490, 109, 121, 20);
 		frame.getContentPane().add(textShippingTableCode);
+
+		textSomaUser = new JTextField();
+		textSomaUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) { // somauser
+			}
+		});
+		textSomaUser.setColumns(10);
+		textSomaUser.setBounds(144, 193, 125, 20);
+		frame.getContentPane().add(textSomaUser);
+
+		JLabel lblSomaUser = new JLabel("Soma User :");
+		lblSomaUser.setBounds(30, 193, 217, 30);
+		frame.getContentPane().add(lblSomaUser);
+
+		somaPasswordField = new JPasswordField();
+		somaPasswordField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { // somapass
+			}
+		});
+		somaPasswordField.setColumns(10);
+		somaPasswordField.setBounds(144, 234, 125, 20);
+		frame.getContentPane().add(somaPasswordField);
+
+		JLabel lblSomaPassword = new JLabel("Soma Password :");
+		lblSomaPassword.setBounds(30, 229, 217, 30);
+		frame.getContentPane().add(lblSomaPassword);
 
 	}
 }
