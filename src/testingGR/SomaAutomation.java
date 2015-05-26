@@ -34,7 +34,10 @@ public class SomaAutomation {
 	/*
 	 * private JRadioButton catBtn; private JRadioButton kitCustBtn;
 	 */
-	;
+
+	
+	Font f = new Font("Arial", Font.BOLD, 12);           //Font
+
 	private JTextField textPassword;
 	private JTextField textPriceTableCode;
 	private JTextField textShippingTableCode;
@@ -143,6 +146,8 @@ public class SomaAutomation {
 				String somaUser = textSomaUser.getText();
 				String somaPass = somaPasswordField.getText();
 				if (somaUser.equals("") && somaPass.equals("")) {
+					textOutput.setFont(f);
+					textOutput.setForeground(Color.RED);
 					textOutput
 							.setText("Please insert a valid\nUsername and Passoword for SOMA");
 				} else {
@@ -254,6 +259,8 @@ public class SomaAutomation {
 						}
 
 					} else if (!pass.equals("do the magic")) {
+						textOutput.setFont(f);
+						textOutput.setForeground(Color.RED);
 						textOutput.setText("Password is empty or incorrect!!!");
 					}
 				}
@@ -302,12 +309,8 @@ public class SomaAutomation {
 		frame.getContentPane().add(textPassword);
 
 		
-		Font f = new Font("Arial", Font.BOLD, 15);
-
-		
 		textOutput = new TextArea();
-		textOutput.setFont(f);
-		textOutput.setForeground(Color.RED);
+
 		textOutput.addComponentListener(new ComponentAdapter() {      //output
 			@Override
 			public void componentHidden(ComponentEvent arg0) {
