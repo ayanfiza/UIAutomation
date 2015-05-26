@@ -12,10 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SomaAutomation {
 
@@ -42,6 +39,7 @@ public class SomaAutomation {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					SomaAutomation window = new SomaAutomation();
@@ -81,6 +79,7 @@ public class SomaAutomation {
 		textProductLine = new JTextField(); // Product Line
 		textProductLine.setText("IT");
 		textProductLine.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -90,6 +89,7 @@ public class SomaAutomation {
 
 		JRadioButton kitCustBtn = new JRadioButton("Kit Cust");
 		kitCustBtn.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				textIntend.setText("Kit Customization");
 			}
@@ -99,6 +99,7 @@ public class SomaAutomation {
 
 		JRadioButton catBtn = new JRadioButton("Catalog");
 		catBtn.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				textIntend.setText("Catalog Offers");
 			}
@@ -118,6 +119,7 @@ public class SomaAutomation {
 																// Customizaiton
 																// Offer
 		btnPriceTable.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				WebDriver driver = null;
 				String browser = textBrowser.getText();
@@ -238,6 +240,7 @@ public class SomaAutomation {
 
 		textIntend = new JTextField();
 		textIntend.addActionListener(new ActionListener() { // Intend
+					@Override
 					public void actionPerformed(ActionEvent e) {
 					}
 				});
@@ -252,6 +255,7 @@ public class SomaAutomation {
 		textBrowser = new JTextField(); // Browser
 		textBrowser.setText("firefox");
 		textBrowser.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
@@ -265,6 +269,7 @@ public class SomaAutomation {
 
 		textPassword = new JPasswordField(); // Password
 		textPassword.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -286,6 +291,7 @@ public class SomaAutomation {
 
 		textPriceTableCode = new JTextField(); // priceTable code
 		textPriceTableCode.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -299,6 +305,7 @@ public class SomaAutomation {
 
 		textShippingTableCode = new JTextField();
 		textShippingTableCode.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) { // ShippingTable Code
 			}
 		});
