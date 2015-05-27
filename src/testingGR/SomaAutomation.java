@@ -35,7 +35,7 @@ public class SomaAutomation {
 	 */
 
 	
-	Font f = new Font("Arial", Font.BOLD, 12);           //Font
+	Font f = new Font("Arial", Font.ITALIC, 12);           //Font
 
 	private JTextField textPassword;
 	private JTextField textPriceTableCode;
@@ -170,6 +170,8 @@ public class SomaAutomation {
 												catalogCode);
 								String skCode = new CreatingSourceKey(driver)
 										.sourceKey(productLine, ptCode);
+								textOutput.setFont(f);
+								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
 										+ "\n ShippingTableCode:  "
@@ -196,6 +198,8 @@ public class SomaAutomation {
 								String customizationOfferCode = new CreateCustomizatinoOffer(
 										driver).customizationOffer(productLine,
 										priceTableCode, shippingTableCode);
+								textOutput.setFont(f);
+								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
 										+ "\n ShippingTableCode:  "
@@ -222,6 +226,8 @@ public class SomaAutomation {
 												catalogCode);
 								String skCode = new CreatingSourceKey(driver)
 										.sourceKey(productLine, ptCode);
+								textOutput.setFont(f);
+								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
 										+ "\n ShippingTableCode:  "
@@ -245,6 +251,8 @@ public class SomaAutomation {
 								String customizationOfferCode = new CreateCustomizatinoOfferFresh(
 										driver).customizationOffer(productLine,
 										priceTableCode, shippingTableCode);
+								textOutput.setFont(f);
+								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
 										+ "\n ShippingTableCode:  "
@@ -379,9 +387,22 @@ public class SomaAutomation {
 		
 		JButton btnRefreshSnapshotDb = new JButton("Refresh Snapshot DB !!!");
 		btnRefreshSnapshotDb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {            // Snapshot DB refresh
+			public void actionPerformed(ActionEvent arg0) {       
+				String pass = textPassword.getText();  // Snapshot DB refresh
+				if (pass.equals("do the magic"))
+				{
+					textOutput.setFont(f);
+					textOutput.setForeground(Color.BLACK);
 				runSQL.JDBCConnection();
 				textOutput.setText("Snapshot DB refreshed");
+				}
+				else
+				{
+					
+					textOutput.setFont(f);
+					textOutput.setForeground(Color.RED);
+					textOutput.setText("Password is empty or incorrect!!!");
+				}
 			}
 		});
 		btnRefreshSnapshotDb.setBounds(30, 286, 239, 23);
