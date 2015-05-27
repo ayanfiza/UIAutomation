@@ -1,5 +1,8 @@
 package testingGR;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -47,8 +50,13 @@ public class CreateCatalogFresh extends SomaAutomation {
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[3]/form/div[3]/div/div/p/a"))
 				.click();
 		// StratDate EndDate
-		driver.findElement(By.id("startDateInput")).sendKeys("05/19/2015");
-		driver.findElement(By.id("endDateInput")).sendKeys("10/19/2015");
+		String  startDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());	
+		Calendar cal = Calendar.getInstance(); 
+		cal.add(Calendar.MONDAY, 1);
+		SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
+		String endDate = format1.format(cal.getTime());	
+		driver.findElement(By.id("startDateInput")).sendKeys(startDate);
+		driver.findElement(By.id("endDateInput")).sendKeys(endDate);
 
 		// ShippingTable
 		driver.findElement(
