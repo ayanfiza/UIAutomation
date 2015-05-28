@@ -32,17 +32,17 @@ public class CreateCustomizatinoOffer {
 		// selecting priceTable
 
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[1]/div[3]/div[2]/div[1]/div/div/button"))
+				By.xpath("/html/body/div[3]/section/form/div/div[3]/div[2]/div[1]/div/div/button"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[4]/form/div[2]/div[2]/div/div/div/input"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[4]/form/div[2]/div[2]/div/div/div/input"))
 				.sendKeys(priceTableCode);
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[4]/form/div[2]/div[3]/div/p/button"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[4]/form/div[2]/div[3]/div/p/button"))
 				.click();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[4]/form/div[2]/div[4]/div/div/div/table/tbody/tr/td[3]/a[1]"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[4]/form/div[2]/div[4]/div/div/div/table/tbody/tr[1]/td[3]/a[1]"))
 				.click();
 		// StratDate EndDate
 		String  startDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());	
@@ -54,60 +54,61 @@ public class CreateCustomizatinoOffer {
 		driver.findElement(By.id("endDateInput")).sendKeys(endDate);
 		// ShippingTable
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[1]/div[3]/div[2]/div[2]/div/div/button"))
+				By.xpath("/html/body/div[3]/section/form/div/div[3]/div[2]/div[2]/div/div/button"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[2]/div[1]/div[1]/div/div/input"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[5]/form/div[2]/div[1]/div[1]/div/div/input"))
 				.sendKeys(shippingTableCode);
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[2]/div[2]/div/p/button"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[5]/form/div[2]/div[2]/div/p/button"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[2]/div[3]/div/div/div/table/tbody/tr/td[1]"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[5]/form/div[2]/div[3]/div/div/div/table/tbody/tr/td[1]"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[5]/form/div[3]/div/div/p/a"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[5]/form/div[3]/div/div/p/a"))
 				.click();
 
 		// Adding Products
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[1]/div/div/button[2]"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[1]/div[1]/div/div/button[2]"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[3]/form/div[2]/div[4]/div/p/button"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[3]/form/div[2]/div[4]/div/p/button"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[3]/form/div[3]/div/div[1]/a"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[3]/form/div[3]/div/div[1]/a"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[3]/form/div[3]/div/div[2]/p/a"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[3]/form/div[3]/div/div[2]/p/a"))
 				.click();
+
 
 		// Updating product info
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[1]/td[5]/select"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[5]/select"))
 				.sendKeys("Base");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[2]/td[5]/select"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[5]/select"))
 				.sendKeys("Mandtory");
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[1]/td[4]/input[1]"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[4]/input[1]"))
 				.sendKeys("2");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[2]/td[4]/input[3]"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[4]/input[3]"))
 				.sendKeys("5");
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[1]/div[2]/table/tbody/tr[3]/td[4]/input[3]"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[1]/div[2]/table/tbody/tr[3]/td[4]/input[3]"))
 				.sendKeys("6");
 
 		// Rules
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[2]/ul/li[2]/a"))
+				By.xpath("/html/body/div[3]/section/div[1]/ul/li[2]/a"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[3]/div[2]/div/div[1]/div[1]/div/select"))
+				By.xpath("/html/body/div[3]/section/div[2]/div[2]/div/div[1]/div[1]/div/select"))
 				.sendKeys("Fl");
 		driver.findElement(By.id("maxSelect")).sendKeys("5");
 		driver.findElement(By.id("ruleValue")).sendKeys("5.99");
