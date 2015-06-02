@@ -43,7 +43,7 @@ public class SomaAutomation {
 	private JTextField textSomaUser;
 	private JPasswordField somaPasswordField;
 	ResetSnapshotDB runSQL = new ResetSnapshotDB();
-//test
+
 	/**
 	 * Launch the application.
 	 */
