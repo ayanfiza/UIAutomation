@@ -110,6 +110,8 @@ public class PriceTableCreation extends SomaAutomation {
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/div[2]/div[2]/table/tbody/tr[3]/td[4]/button[1]"))
 				.click();
+/*		driver.findElement(By.id("BUTTON_save")).click();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);*/
 		driver.findElement(By.id("BUTTON_validate")).click();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		String priceCode1 = driver.findElement(By.id("priceCode")).getText();

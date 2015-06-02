@@ -60,6 +60,10 @@ public class CreateCustomizatinoOffer {
 				By.xpath("/html/body/div[3]/section/div[2]/div[5]/form/div[2]/div[1]/div[1]/div/div/input"))
 				.sendKeys(shippingTableCode);
 		driver.findElement(
+				By.xpath("/html/body/div[3]/section/div[2]/div[5]/form/div[2]/div[1]/div[2]/div/div/select"))
+				.sendKeys("Total");
+		
+		driver.findElement(
 				By.xpath("/html/body/div[3]/section/div[2]/div[5]/form/div[2]/div[2]/div/p/button"))
 				.click();
 		driver.findElement(
