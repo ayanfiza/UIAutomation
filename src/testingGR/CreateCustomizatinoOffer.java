@@ -19,7 +19,7 @@ public class CreateCustomizatinoOffer {
 
 	public String customizationOffer(String productline, String priceTableCode,
 			String shippingTableCode) {
-
+//Navigation
 		driver = new BasePage(driver)
 				.hover("/html/body/div[2]/div[2]/div/div/div/ul/li[4]/a",
 						"/html/body/div[2]/div[2]/div/div/div/ul/li[4]/ul/li[3]/a",
