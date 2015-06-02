@@ -33,7 +33,7 @@ public class SomaAutomation {
 	/*
 	 * private JRadioButton catBtn; private JRadioButton kitCustBtn;
 	 */
-
+//Test
 	
 	Font f = new Font("Arial", Font.ITALIC, 12);           //Font
 
