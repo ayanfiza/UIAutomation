@@ -34,7 +34,7 @@ public class CreateCatalog extends SomaAutomation {
 		// selecting priceTable
 
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[1]/div[2]/div[2]/div[1]/div/div/button"))
+				By.xpath("/html/body/div[3]/section/form/div[1]/div[3]/div[2]/div[1]/div/div/button"))
 				.click();
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[3]/form/div[2]/div[2]/div/div/div/input"))
@@ -57,10 +57,11 @@ public class CreateCatalog extends SomaAutomation {
 		String endDate = format1.format(cal.getTime());	
 		driver.findElement(By.id("startDateInput")).sendKeys(startDate);
 		driver.findElement(By.id("endDateInput")).sendKeys(endDate);
-
+		driver.findElement(By.id("catalogDescription")).click();
+		
 		// ShippingTable
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/form/div[1]/div[2]/div[2]/div[2]/div/div/button"))
+				By.xpath("/html/body/div[3]/section/form/div[1]/div[3]/div[2]/div[2]/div/div/button"))
 				.click();
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[4]/form/div[2]/div[1]/div[1]/div/div/input"))
@@ -104,8 +105,8 @@ public class CreateCatalog extends SomaAutomation {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		String catalogCode1 = driver
 				.findElement(
-						By.xpath("/html/body/div[3]/section/form/div[1]/div[1]/div[1]/div[1]/h4/span"))
-				.getText();
+						By.id("catalogCode"))				
+						.getText();
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		catalogCode = catalogCode1;
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

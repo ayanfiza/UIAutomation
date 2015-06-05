@@ -73,7 +73,7 @@ public class SomaAutomation {
 	 */
 	private void initialize() {
 		frame = new JFrame("Play with SOMA UI");
-		frame.setBounds(100, 100, 655, 403);
+		frame.setBounds(100, 100, 774, 403);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -117,14 +117,23 @@ public class SomaAutomation {
 		catBtn.setBounds(543, 35, 68, 23);
 		frame.getContentPane().add(catBtn);
 
+		JRadioButton catBtnPls = new JRadioButton("Catalog Plus");
+		catBtnPls.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		
+		
+		catBtnPls.setBounds(624, 35, 87, 23);
+		frame.getContentPane().add(catBtnPls);
 
 		
 		
 		ButtonGroup bG = new ButtonGroup();
 		bG.add(kitCustBtn);
 		bG.add(catBtn);
-
+		bG.add(catBtnPls);
 		JButton btnPriceTable = new JButton("Do The Magic"); // Creating
 																// Price
 																// Table and
@@ -152,8 +161,8 @@ public class SomaAutomation {
 							.setText("Please insert a valid\nUsername and Passoword for SOMA");
 				} else {
 					if (pass.equals("do the magic")) {
-						if (catBtn.isSelected() && priceTabelCode1.equals("")
-								&& shippingTableCode1.equals("")) // Catalog
+						if (catBtnPls.isSelected() && priceTabelCode1.equals("")
+								&& shippingTableCode1.equals("")) 						// Catalog Plus
 						{
 							try {
 								driver = new BasePage(driver).login(browser,
@@ -183,7 +192,33 @@ public class SomaAutomation {
 								textOutput.setText(e1.getMessage());
 
 							}
-						} else if (kitCustBtn.isSelected()
+						}
+						else if (catBtn.isSelected() && priceTabelCode1.equals("")
+								&& shippingTableCode1.equals("")) 						// Catalog
+						{
+							try {
+								driver = new BasePage(driver).login(browser,
+										somaUser, somaPass);
+								driver = new PriceTableCreation(driver)
+										.createPriceTable(productLine, intend);
+								driver = new ShippingTableCreation(driver)
+										.createShippingTable();
+								driver = new CreateCatalog(driver).catalog(
+										productLine, priceTableCode,
+										shippingTableCode);
+								textOutput.setFont(f);
+								textOutput.setForeground(Color.BLACK);
+								textOutput.setText("PriceTableCode:  "
+										+ priceTableCode
+										+ "\n ShippingTableCode:  "
+										+ shippingTableCode
+										+ "\n Catalog Code:  " + catalogCode);
+							} catch (InterruptedException e1) {
+								textOutput.setText(e1.getMessage());
+
+							}
+						}
+						else if (kitCustBtn.isSelected()
 								&& priceTabelCode1.equals("")
 								&& shippingTableCode1.equals("")) // Customization
 																	// Offer
@@ -210,7 +245,7 @@ public class SomaAutomation {
 								textOutput.setText(e1.getMessage());
 
 							}
-						} else if (catBtn.isSelected()
+						} else if (catBtnPls.isSelected()							//Catalog Plus with Price n shipping preselected
 								&& !priceTabelCode1.equals("")
 								&& !shippingTableCode1.equals("")) {
 							try {
@@ -240,7 +275,31 @@ public class SomaAutomation {
 
 							}
 
-						} else if (kitCustBtn.isSelected()
+						}
+						else if (catBtn.isSelected() && !priceTabelCode1.equals("")
+								&& !shippingTableCode1.equals("")) 						// Catalog with Price n shipping preselected
+						{
+							try {
+								driver = new BasePage(driver).login(browser,
+										somaUser, somaPass);
+								String priceTableCode = priceTabelCode1;
+								String shippingTableCode = shippingTableCode1;
+								driver = new CreateCatalogFresh(driver)
+										.catalog(productLine, priceTableCode,
+												shippingTableCode);
+								textOutput.setFont(f);
+								textOutput.setForeground(Color.BLACK);
+								textOutput.setText("PriceTableCode:  "
+										+ priceTableCode
+										+ "\n ShippingTableCode:  "
+										+ shippingTableCode
+										+ "\n Catalog Code:  " + catalogCode);
+							} catch (Exception e11) {
+								textOutput.setText(e11.getMessage());
+
+							}
+						}
+						else if (kitCustBtn.isSelected()							//Customization Offer with Price n shipping preselected
 								&& !priceTabelCode1.equals("")
 								&& !shippingTableCode1.equals("")) {
 							try {
@@ -274,7 +333,7 @@ public class SomaAutomation {
 				}
 			}
 		});
-		btnPriceTable.setBounds(403, 146, 155, 23);
+		btnPriceTable.setBounds(456, 146, 155, 23);
 		frame.getContentPane().add(btnPriceTable);
 
 		textIntend = new JTextField();
@@ -324,7 +383,7 @@ public class SomaAutomation {
 			public void componentHidden(ComponentEvent arg0) {
 			}
 		});
-		textOutput.setBounds(291, 193, 320, 139);
+		textOutput.setBounds(391, 193, 320, 139);
 		frame.getContentPane().add(textOutput);
 
 		JLabel lblChooseOne = new JLabel("Choose one");
@@ -342,7 +401,7 @@ public class SomaAutomation {
 			}
 		});
 		textPriceTableCode.setColumns(10);
-		textPriceTableCode.setBounds(490, 69, 121, 20);
+		textPriceTableCode.setBounds(531, 69, 180, 20);
 		frame.getContentPane().add(textPriceTableCode);
 
 		JLabel lblShippingtable = new JLabel("ShippingTable?");
@@ -356,7 +415,7 @@ public class SomaAutomation {
 			}
 		});
 		textShippingTableCode.setColumns(10);
-		textShippingTableCode.setBounds(490, 109, 121, 20);
+		textShippingTableCode.setBounds(531, 109, 180, 20);
 		frame.getContentPane().add(textShippingTableCode);
 
 		textSomaUser = new JTextField();
@@ -407,6 +466,8 @@ public class SomaAutomation {
 		});
 		btnRefreshSnapshotDb.setBounds(30, 286, 239, 23);
 		frame.getContentPane().add(btnRefreshSnapshotDb);
+		
+
 
 	}
 }

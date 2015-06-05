@@ -42,16 +42,16 @@ public class PriceTableCreation extends SomaAutomation {
 				By.xpath("/html/body/div[3]/section/div[2]/div[1]/div/div/button[1]"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/div[8]/form/div[2]/div[4]/div/p/a[1]/i"))
+				By.xpath("/html/body/div[3]/section/div[8]/form/div[2]/div[5]/div/p/a[1]/i"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/div[8]/form/div[2]/div[5]/div/div/div/table/tbody/tr[1]/td[1]"))
+				By.xpath("/html/body/div[3]/section/div[8]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[1]"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/div[8]/form/div[2]/div[5]/div/div/div/table/tbody/tr[2]/td[1]"))
+				By.xpath("/html/body/div[3]/section/div[8]/form/div[2]/div[6]/div/div/div/table/tbody/tr[2]/td[1]"))
 				.click();
 		driver.findElement(
-				By.xpath("/html/body/div[3]/section/div[8]/form/div[2]/div[5]/div/div/div/table/tbody/tr[3]/td[1]"))
+				By.xpath("/html/body/div[3]/section/div[8]/form/div[2]/div[6]/div/div/div/table/tbody/tr[3]/td[1]"))
 				.click();
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/div[8]/form/div[3]/div/div/p/a"))
