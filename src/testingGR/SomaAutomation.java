@@ -125,7 +125,7 @@ public class SomaAutomation {
 		});
 		
 		
-		catBtnPls.setBounds(624, 35, 87, 23);
+		catBtnPls.setBounds(613, 35, 98, 23);
 		frame.getContentPane().add(catBtnPls);
 
 		
