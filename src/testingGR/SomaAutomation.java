@@ -183,11 +183,11 @@ public class SomaAutomation {
 								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
-										+ "\n ShippingTableCode:  "
+										+ "\nShippingTableCode:  "
 										+ shippingTableCode
-										+ "\n Catalog Code:  " + catalogCode
-										+ "\n Promotional Template:  " + ptCode
-										+ "\n Sourcekey Code:  " + skCode);
+										+ "\nCatalog Code:  " + catalogCode
+										+ "\nPromotional Template:  " + ptCode
+										+ "\nSourcekey Code:  " + skCode);
 							} catch (InterruptedException e1) {
 								textOutput.setText(e1.getMessage());
 
@@ -210,9 +210,9 @@ public class SomaAutomation {
 								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
-										+ "\n ShippingTableCode:  "
+										+ "\nShippingTableCode:  "
 										+ shippingTableCode
-										+ "\n Catalog Code:  " + catalogCode);
+										+ "\nCatalog Code:  " + catalogCode);
 							} catch (InterruptedException e1) {
 								textOutput.setText(e1.getMessage());
 
@@ -237,9 +237,9 @@ public class SomaAutomation {
 								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
-										+ "\n ShippingTableCode:  "
+										+ "\nShippingTableCode:  "
 										+ shippingTableCode
-										+ "\n CustomizaitnoOfferCode:  "
+										+ "\nCustomizaitnoOfferCode:  "
 										+ customizationOfferCode);
 							} catch (InterruptedException e1) {
 								textOutput.setText(e1.getMessage());
@@ -265,11 +265,11 @@ public class SomaAutomation {
 								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
-										+ "\n ShippingTableCode:  "
+										+ "\nShippingTableCode:  "
 										+ shippingTableCode
-										+ "\n Catalog Code:  " + catalogCode
-										+ "\n Promotional Template:  " + ptCode
-										+ "\n Sourcekey Code:  " + skCode);
+										+ "\nCatalog Code:  " + catalogCode
+										+ "\nPromotional Template:  " + ptCode
+										+ "\nSourcekey Code:  " + skCode);
 							} catch (Exception e1) {
 								textOutput.setText(e1.getMessage());
 
@@ -291,9 +291,9 @@ public class SomaAutomation {
 								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
-										+ "\n ShippingTableCode:  "
+										+ "\nShippingTableCode:  "
 										+ shippingTableCode
-										+ "\n Catalog Code:  " + catalogCode);
+										+ "\nCatalog Code:  " + catalogCode);
 							} catch (Exception e11) {
 								textOutput.setText(e11.getMessage());
 
@@ -314,9 +314,9 @@ public class SomaAutomation {
 								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
 										+ priceTableCode
-										+ "\n ShippingTableCode:  "
+										+ "\nShippingTableCode:  "
 										+ shippingTableCode
-										+ "\n CustomizaitnoOfferCode:  "
+										+ "\nCustomizaitnoOfferCode:  "
 										+ customizationOfferCode);
 							} catch (Exception e1) {
 								textOutput.setText(e1.getMessage());
