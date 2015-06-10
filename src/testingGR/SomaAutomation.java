@@ -119,7 +119,9 @@ public class SomaAutomation {
 
 		JRadioButton catBtnPls = new JRadioButton("Catalog Plus");
 		catBtnPls.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				textIntend.setText("Catalog Offers");
 				
 			}
 		});
