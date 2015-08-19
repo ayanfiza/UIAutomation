@@ -39,7 +39,7 @@ public class ShippingTableCreation extends SomaAutomation {
 		driver.findElement(By.id("startDateInput")).sendKeys(startDate);
 		driver.findElement(By.id("endDateInput")).click();
 		driver.findElement(By.id("endDateInput")).sendKeys(endDate);
-
+//Random
 		Random rand = new Random();
 		int rando = rand.nextInt((1000 - 100) + 1) + 10;
 		String random = Integer.toString(rando);
