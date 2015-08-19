@@ -87,7 +87,7 @@ public class SomaAutomation {
 		frame.getContentPane().add(lblIntend);
 
 		textProductLine = new JTextField(); // Product Line
-		textProductLine.setText("IT");
+		textProductLine.setText("Meaningful Beauty");
 		textProductLine.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -172,7 +172,7 @@ public class SomaAutomation {
 								driver = new PriceTableCreation(driver)
 										.createPriceTable(productLine, intend);
 								driver = new ShippingTableCreation(driver)
-										.createShippingTable();
+										.createShippingTable(intend);
 								driver = new CreateCatalog(driver).catalog(
 										productLine, priceTableCode,
 										shippingTableCode);
@@ -204,7 +204,7 @@ public class SomaAutomation {
 								driver = new PriceTableCreation(driver)
 										.createPriceTable(productLine, intend);
 								driver = new ShippingTableCreation(driver)
-										.createShippingTable();
+										.createShippingTable(intend);
 								driver = new CreateCatalog(driver).catalog(
 										productLine, priceTableCode,
 										shippingTableCode);
@@ -231,7 +231,7 @@ public class SomaAutomation {
 								driver = new PriceTableCreation(driver)
 										.createPriceTable(productLine, intend);
 								driver = new ShippingTableCreation(driver)
-										.createShippingTable();
+										.createShippingTable(intend);
 								String customizationOfferCode = new CreateCustomizatinoOffer(
 										driver).customizationOffer(productLine,
 										priceTableCode, shippingTableCode);

@@ -49,14 +49,18 @@ public class CreateCatalogFresh extends SomaAutomation {
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/form/div[3]/div[3]/form/div[3]/div/div/p/a"))
 				.click();
-		// StratDate EndDate
-		String  startDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());	
-		Calendar cal = Calendar.getInstance(); 
-		cal.add(Calendar.MONDAY, 1);
-		SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-		String endDate = format1.format(cal.getTime());	
-		driver.findElement(By.id("startDateInput")).sendKeys(startDate);
-		driver.findElement(By.id("endDateInput")).sendKeys(endDate);
+
+				// Start and End Date
+						String startDate = new SimpleDateFormat("MMddyyyy").format(new Date());
+						Calendar cal = Calendar.getInstance();
+						cal.add(Calendar.MONDAY, 1);
+						SimpleDateFormat format1 = new SimpleDateFormat("MMddyyyy");
+						String endDate = format1.format(cal.getTime());
+						driver.findElement(By.id("startDateInput")).click();
+						driver.findElement(By.id("startDateInput")).sendKeys(startDate);
+						driver.findElement(By.id("endDateInput")).click();
+						driver.findElement(By.id("endDateInput")).sendKeys(endDate);
+						
 		driver.findElement(By.id("catalogDescription")).click();
 		// ShippingTable
 		driver.findElement(
