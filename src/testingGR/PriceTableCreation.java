@@ -15,8 +15,11 @@ public class PriceTableCreation extends SomaAutomation {
 	public PriceTableCreation(WebDriver driver) {
 		this.driver = driver;
 	}
+	
+	
 
-	public WebDriver createPriceTable(String productLine, String intend) throws InterruptedException {
+	public WebDriver createPriceTable(String productLine, String intend, String[] product) throws InterruptedException {
+		String[] prod = product;
 		this.driver = new BasePage(driver).hover("/html/body/div[1]/div[2]/div/div/div/ul/li[3]/a",
 				"/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/a",
 				"/html/body/div[1]/div[2]/div/div/div/ul/li[3]/ul/li[1]/ul/li[2]/a");
@@ -38,7 +41,23 @@ public class PriceTableCreation extends SomaAutomation {
 
 		// Searching and adding three products
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[3]/div[1]/div/div/button[1]")).click();
+		driver.findElement(By.id("productCode")).sendKeys(prod[0]);
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]")).click();
+		
+		driver.findElement(By.id("productCode")).clear();
+		driver.findElement(By.id("productCode")).sendKeys(prod[1]);
+		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]")).click();
+		
+		driver.findElement(By.id("productCode")).clear();
+		driver.findElement(By.id("productCode")).sendKeys(prod[2]);
+		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]")).click();
+		
+		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[3]/div/div/p/a")).click();
+
+		/*driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).click();
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[1]"))
 				.click();
@@ -48,7 +67,7 @@ public class PriceTableCreation extends SomaAutomation {
 		driver.findElement(
 				By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[3]/td[1]"))
 				.click();
-		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[3]/div/div/p/a")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[3]/div/div/p/a")).click();*/
 		// Creating Price Group
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[3]/div[1]/div/div/button[2]")).click();
 		driver.findElement(By.id("newGroupName")).sendKeys("Member");

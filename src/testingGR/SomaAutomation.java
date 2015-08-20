@@ -156,6 +156,9 @@ public class SomaAutomation {
 				String shippingTableCode1 = textShippingTableCode.getText();
 				String somaUser = textSomaUser.getText();
 				String somaPass = somaPasswordField.getText();
+				GetActiveProducts get = new GetActiveProducts();
+				String[] products = get.products();
+				
 				if (somaUser.equals("") && somaPass.equals("")) {
 					textOutput.setFont(f);
 					textOutput.setForeground(Color.RED);
@@ -170,7 +173,7 @@ public class SomaAutomation {
 								driver = new BasePage(driver).login(browser,
 										somaUser, somaPass);
 								driver = new PriceTableCreation(driver)
-										.createPriceTable(productLine, intend);
+										.createPriceTable(productLine, intend, products);
 								driver = new ShippingTableCreation(driver)
 										.createShippingTable(intend);
 								driver = new CreateCatalog(driver).catalog(
@@ -202,7 +205,7 @@ public class SomaAutomation {
 								driver = new BasePage(driver).login(browser,
 										somaUser, somaPass);
 								driver = new PriceTableCreation(driver)
-										.createPriceTable(productLine, intend);
+										.createPriceTable(productLine, intend, products);
 								driver = new ShippingTableCreation(driver)
 										.createShippingTable(intend);
 								driver = new CreateCatalog(driver).catalog(
@@ -229,7 +232,7 @@ public class SomaAutomation {
 								driver = new BasePage(driver).login(browser,
 										somaUser, somaPass);
 								driver = new PriceTableCreation(driver)
-										.createPriceTable(productLine, intend);
+										.createPriceTable(productLine, intend, products);
 								driver = new ShippingTableCreation(driver)
 										.createShippingTable(intend);
 								String customizationOfferCode = new CreateCustomizatinoOffer(
