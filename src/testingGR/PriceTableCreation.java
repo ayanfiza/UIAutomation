@@ -15,8 +15,6 @@ public class PriceTableCreation extends SomaAutomation {
 	public PriceTableCreation(WebDriver driver) {
 		this.driver = driver;
 	}
-	
-	
 
 	public WebDriver createPriceTable(String productLine, String intend, String[] product) throws InterruptedException {
 		String[] prod = product;
@@ -43,31 +41,38 @@ public class PriceTableCreation extends SomaAutomation {
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[3]/div[1]/div/div/button[1]")).click();
 		driver.findElement(By.id("productCode")).sendKeys(prod[0]);
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).click();
-		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]")).click();
-		
+		driver.findElement(
+				By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]"))
+				.click();
+
 		driver.findElement(By.id("productCode")).clear();
 		driver.findElement(By.id("productCode")).sendKeys(prod[1]);
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).click();
-		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]")).click();
-		
+		driver.findElement(
+				By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]"))
+				.click();
+
 		driver.findElement(By.id("productCode")).clear();
 		driver.findElement(By.id("productCode")).sendKeys(prod[2]);
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).click();
-		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]")).click();
-		
+		driver.findElement(
+				By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[2]"))
+				.click();
+
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[3]/div/div/p/a")).click();
 
-		/*driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).click();
-		driver.findElement(
-				By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[1]"))
-				.click();
-		driver.findElement(
-				By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[2]/td[1]"))
-				.click();
-		driver.findElement(
-				By.xpath("/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[3]/td[1]"))
-				.click();
-		driver.findElement(By.xpath("/html/body/div[3]/section/div[9]/form/div[3]/div/div/p/a")).click();*/
+		/*
+		 * driver.findElement(By.xpath(
+		 * "/html/body/div[3]/section/div[9]/form/div[2]/div[5]/div/p/a[1]/i")).
+		 * click(); driver.findElement( By.xpath(
+		 * "/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[1]/td[1]"
+		 * )) .click(); driver.findElement( By.xpath(
+		 * "/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[2]/td[1]"
+		 * )) .click(); driver.findElement( By.xpath(
+		 * "/html/body/div[3]/section/div[9]/form/div[2]/div[6]/div/div/div/table/tbody/tr[3]/td[1]"
+		 * )) .click(); driver.findElement(By.xpath(
+		 * "/html/body/div[3]/section/div[9]/form/div[3]/div/div/p/a")).click();
+		 */
 		// Creating Price Group
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[3]/div[1]/div/div/button[2]")).click();
 		driver.findElement(By.id("newGroupName")).sendKeys("Member");
@@ -76,7 +81,8 @@ public class PriceTableCreation extends SomaAutomation {
 		driver.findElement(By.id("newGroupName")).sendKeys("Non-Member");
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[8]/form/div[3]/button[1]")).click();
 		// First product
-		driver.findElement(By.cssSelector("html.k-ff.k-ff40 body.priceTablePage div.container section#content div#priceTable div#priceTableGrid.dataTable table.table tbody tr td span.viewing.controls a.edit"))
+		driver.findElement(By.cssSelector(
+				"html.k-ff.k-ff40 body.priceTablePage div.container section#content div#priceTable div#priceTableGrid.dataTable table.table tbody tr td span.viewing.controls a.edit"))
 				.click();
 		driver.findElement(By.xpath("/html/body/div[3]/section/div[3]/div[2]/table/tbody/tr[1]/td[2]/input"))
 				.sendKeys("2.99");
