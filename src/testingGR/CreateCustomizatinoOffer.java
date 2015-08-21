@@ -28,6 +28,8 @@ public class CreateCustomizatinoOffer {
 		driver.findElement(By.id("offerDescription"))
 				.sendKeys("This is my Kit Customization description  " + new Random().nextInt(1000));
 		driver.findElement(By.id("hostProductLineCode")).sendKeys(productline);
+		
+		//OfferCOde
 		driver.findElement(By.id("offerCustomCode")).sendKeys(coCode);
 		// selecting priceTable
 
@@ -117,8 +119,9 @@ public class CreateCustomizatinoOffer {
 		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
 		WebElement code = driver.findElement(By.cssSelector("html.k-ff.k-ff40 body.customizationOfferPage div.container section#content form#customizationOfferForm.form-horizontal div#basicInfocontainer div.row-fluid div.span8 div.pull-left h4 span#custOfferCode"));
 		String customizationOfferCode = code.getText();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		return customizationOfferCode;
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);	
+		return customizationOfferCode.concat(coCode).toUpperCase();
+
 
 	}
 

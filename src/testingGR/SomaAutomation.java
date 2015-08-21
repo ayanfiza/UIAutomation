@@ -43,6 +43,8 @@ public class SomaAutomation {
 	private JTextField textSomaUser;
 	private JPasswordField somaPasswordField;
 	ResetSnapshotDB runSQL = new ResetSnapshotDB();
+	private JTextField email;
+	private JTextField result;
 
 	/**
 	 * Launch the application.
@@ -159,6 +161,8 @@ public class SomaAutomation {
 				GetActiveProducts get = new GetActiveProducts();
 				String[] products = get.products();
 				RandomAlphaNumeric alphaRand = new RandomAlphaNumeric();
+				String sendEmail = email.getText();
+				SendMail send = new SendMail();
 				if (somaUser.equals("") && somaPass.equals("")) {
 					textOutput.setFont(f);
 					textOutput.setForeground(Color.RED);
@@ -330,6 +334,21 @@ public class SomaAutomation {
 
 						}
 
+						if (!sendEmail.equals(""))
+						{
+							String body = textOutput.getText();
+							String email = sendEmail;
+							Boolean b =send.sendMail(body, email);
+							if (b= true)
+							{
+								result.setBackground(Color.green);
+							}
+							else
+							{
+								result.setBackground(Color.red);
+							}
+						}
+						
 					} else if (!pass.equals("do the magic")) {
 						textOutput.setFont(f);
 						textOutput.setForeground(Color.RED);
@@ -338,7 +357,7 @@ public class SomaAutomation {
 				}
 			}
 		});
-		btnPriceTable.setBounds(456, 146, 155, 23);
+		btnPriceTable.setBounds(480, 322, 155, 23);
 		frame.getContentPane().add(btnPriceTable);
 
 		textIntend = new JTextField();
@@ -388,7 +407,7 @@ public class SomaAutomation {
 			public void componentHidden(ComponentEvent arg0) {
 			}
 		});
-		textOutput.setBounds(391, 193, 320, 139);
+		textOutput.setBounds(393, 177, 320, 139);
 		frame.getContentPane().add(textOutput);
 
 		JLabel lblChooseOne = new JLabel("Choose one");
@@ -471,6 +490,29 @@ public class SomaAutomation {
 		});
 		btnRefreshSnapshotDb.setBounds(30, 286, 239, 23);
 		frame.getContentPane().add(btnRefreshSnapshotDb);
+		
+		JLabel lblSendEmail = new JLabel("Send Email?");
+		lblSendEmail.setBounds(393, 142, 87, 30);
+		frame.getContentPane().add(lblSendEmail);
+		
+		email = new JTextField();					//email
+		email.setText("kgautam_consultant@guthy-renker.com");
+		email.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		email.setColumns(10);
+		email.setBounds(500, 147, 180, 20);
+		frame.getContentPane().add(email);
+		
+		result = new JTextField();
+		result.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		result.setColumns(10);
+		result.setBounds(690, 147, 21, 20);
+		frame.getContentPane().add(result);
 		
 
 
