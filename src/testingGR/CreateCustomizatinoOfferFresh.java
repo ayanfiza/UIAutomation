@@ -18,7 +18,7 @@ public class CreateCustomizatinoOfferFresh {
 	}
 
 	public String customizationOffer(String productline, String priceTableCode,
-			String shippingTableCode) {
+			String shippingTableCode, String coCode) {
 
 		driver = new BasePage(driver)
 				.hover("/html/body/div[1]/div[2]/div/div/div/ul/li[4]/a",
@@ -29,6 +29,7 @@ public class CreateCustomizatinoOfferFresh {
 				"This is my Kit Customization description  "
 						+ new Random().nextInt(1000));
 		driver.findElement(By.id("hostProductLineCode")).sendKeys(productline);
+		driver.findElement(By.id("offerCustomCode")).sendKeys(coCode);
 		// selecting priceTable
 
 		driver.findElement(

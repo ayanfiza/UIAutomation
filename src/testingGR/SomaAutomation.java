@@ -158,7 +158,7 @@ public class SomaAutomation {
 				String somaPass = somaPasswordField.getText();
 				GetActiveProducts get = new GetActiveProducts();
 				String[] products = get.products();
-				
+				RandomAlphaNumeric alphaRand = new RandomAlphaNumeric();
 				if (somaUser.equals("") && somaPass.equals("")) {
 					textOutput.setFont(f);
 					textOutput.setForeground(Color.RED);
@@ -237,7 +237,7 @@ public class SomaAutomation {
 										.createShippingTable(intend);
 								String customizationOfferCode = new CreateCustomizatinoOffer(
 										driver).customizationOffer(productLine,
-										priceTableCode, shippingTableCode);
+										priceTableCode, shippingTableCode,alphaRand.randomAlphanumeric());
 								textOutput.setFont(f);
 								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
@@ -314,7 +314,7 @@ public class SomaAutomation {
 								String shippingTableCode = shippingTableCode1;
 								String customizationOfferCode = new CreateCustomizatinoOfferFresh(
 										driver).customizationOffer(productLine,
-										priceTableCode, shippingTableCode);
+										priceTableCode, shippingTableCode, alphaRand.randomAlphanumeric());
 								textOutput.setFont(f);
 								textOutput.setForeground(Color.BLACK);
 								textOutput.setText("PriceTableCode:  "
